@@ -366,7 +366,8 @@ final class Alpaca_Takeover {
 			__( 'Project Board', 'alpaca-takeover' ),
 			'read',
 			'project-board',
-			'alpaistr_project_board_page'
+			'alpaistr_project_board_page',
+			0
 		);
 	}
 
