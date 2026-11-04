@@ -1,0 +1,11 @@
+.alpaca-settings .alpaca-context-capture-setting {
+  display: none !important;
+}
+
+body.options-discussion-php table.form-table.indent-children {
+  display: none !important;
+}
+
+body.options-discussion-php #wp-settings-section-avatars {
+  display: none !important;
+}
