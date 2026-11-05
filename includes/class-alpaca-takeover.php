@@ -37,6 +37,8 @@ final class Alpaca_Takeover {
 		add_action( 'admin_menu', array( $takeover, 'remove_admin_menus' ), 999 );
 		add_action( 'admin_menu', array( $takeover, 'allow_board_read_access' ), 1000 );
 		add_action( 'admin_enqueue_scripts', array( $takeover, 'enqueue_admin_bar_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $takeover, 'enqueue_admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $takeover, 'enqueue_admin_navigation_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $takeover, 'enqueue_settings_styles' ) );
 		add_action( 'admin_bar_menu', array( $takeover, 'replace_wordpress_logo' ), 11 );
 		add_action( 'admin_bar_menu', array( $takeover, 'remove_admin_bar_content_links' ), 999 );
@@ -485,6 +487,60 @@ final class Alpaca_Takeover {
 			plugin_dir_url( $plugin_file ) . 'assets/css/admin-bar.css',
 			array(),
 			$style_version
+		);
+	}
+
+	/**
+	 * Enqueue the Alpaca admin visual theme.
+	 *
+	 * @return void
+	 */
+	public function enqueue_admin_styles() {
+		if ( is_network_admin() ) {
+			return;
+		}
+
+		$plugin_directory = dirname( __DIR__ );
+		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
+		$style_file       = $plugin_directory . '/assets/css/admin.css';
+		$style_version    = file_exists( $style_file ) ? (string) filemtime( $style_file ) : '0.1.0';
+
+		wp_enqueue_style(
+			'alpaca-takeover-font',
+			'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap',
+			array(),
+			null
+		);
+
+		wp_enqueue_style(
+			'alpaca-takeover-admin',
+			plugin_dir_url( $plugin_file ) . 'assets/css/admin.css',
+			array( 'alpaca-takeover-font' ),
+			$style_version
+		);
+	}
+
+	/**
+	 * Enqueue the accessible administration navigation disclosure.
+	 *
+	 * @return void
+	 */
+	public function enqueue_admin_navigation_script() {
+		if ( is_network_admin() ) {
+			return;
+		}
+
+		$plugin_directory = dirname( __DIR__ );
+		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
+		$script_file      = $plugin_directory . '/assets/js/admin-nav.js';
+		$script_version   = file_exists( $script_file ) ? (string) filemtime( $script_file ) : '0.1.0';
+
+		wp_enqueue_script(
+			'alpaca-takeover-admin-navigation',
+			plugin_dir_url( $plugin_file ) . 'assets/js/admin-nav.js',
+			array( 'wp-i18n' ),
+			$script_version,
+			true
 		);
 	}
 
