@@ -527,6 +527,9 @@ body.toplevel_page_project-board .wrap {
 }
 
 body.wp-admin:is(
+    .plugins-php,
+    .users-php,
+    .options-general-php,
     .project-board_page_project-activity,
     .project-board_page_alpaca-settings,
     .project-board_page_alpaca-notifications,
