@@ -1,6 +1,6 @@
 # Theme Development
 
-Alpaca Takeover keeps its administration layout and component geometry fixed. Theme stylesheets control presentation tokens such as color, typography, spacing, borders, and shadows. The selected theme is site-wide, and each theme supplies one fixed color mode. Camelid is light; Othello is dark.
+Alpaca Takeover keeps its administration layout and component geometry fixed. Theme stylesheets control presentation tokens such as color, typography, spacing, borders, and shadows. The selected theme is site-wide, and each theme supplies one fixed color mode. Camelid and Material 3 are light; Othello is dark.
 
 ## Register a Theme
 
@@ -27,7 +27,7 @@ Typography and presentation tokens include `font_family`, `font_size_body`, `fon
 
 ## Theme Stylesheet
 
-The first three `--alpaca-palette-*` variables color board columns. Define them in the theme stylesheet for each mode.
+Board columns use `--alpaca-columnbg`. Set its default on the theme body, then override it for subsequent columns with `nth-child()` selectors, as the built-in light themes do.
 
 ## Force a Theme
 

@@ -281,6 +281,19 @@ final class Alpaca_Takeover_Appearance {
 			$theme_stylesheet_version
 		);
 
+		if ( 'material' === $theme_id ) {
+			$theme_script_file    = $plugin_directory . '/assets/js/themes/material.js';
+			$theme_script_version = file_exists( $theme_script_file ) ? (string) filemtime( $theme_script_file ) : null;
+
+			wp_enqueue_script(
+				'alpaca-takeover-theme-material',
+				plugin_dir_url( $plugin_file ) . 'assets/js/themes/material.js',
+				array(),
+				$theme_script_version,
+				true
+			);
+		}
+
 	}
 
 	/**
@@ -402,6 +415,11 @@ final class Alpaca_Takeover_Appearance {
 			'camelid' => array(
 				'label'      => __( 'Camelid', 'alpaca-takeover' ),
 				'stylesheet' => $theme_url . 'camelid.css',
+				'mode'       => 'light',
+			),
+			'material' => array(
+				'label'      => __( 'Material', 'alpaca-takeover' ),
+				'stylesheet' => $theme_url . 'material.css',
 				'mode'       => 'light',
 			),
 			'othello' => array(
