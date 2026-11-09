@@ -1,0 +1,4 @@
+body.wp-admin {
+  color-scheme: var(--alpaca-color-scheme, light);
+  accent-color: var(--alpaca-accent);
+}

@@ -294,6 +294,9 @@ final class Alpaca_Takeover {
 		);
 
 		$submenu_items = array(
+			'project-board'       => array(
+				'alpaca-fix-with-ai',
+			),
 			'edit.php'            => array(
 				'edit-tags.php?taxonomy=category',
 				'edit-tags.php?taxonomy=post_tag',
@@ -502,7 +505,7 @@ final class Alpaca_Takeover {
 
 		$plugin_directory = dirname( __DIR__ );
 		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
-		$style_file       = $plugin_directory . '/assets/css/admin.css';
+		$style_file       = $plugin_directory . '/assets/css/base/admin.css';
 		$style_version    = file_exists( $style_file ) ? (string) filemtime( $style_file ) : '0.1.0';
 
 		wp_enqueue_style(
@@ -514,7 +517,7 @@ final class Alpaca_Takeover {
 
 		wp_enqueue_style(
 			'alpaca-takeover-admin',
-			plugin_dir_url( $plugin_file ) . 'assets/css/admin.css',
+			plugin_dir_url( $plugin_file ) . 'assets/css/base/admin.css',
 			array( 'alpaca-takeover-font' ),
 			$style_version
 		);
@@ -576,6 +579,7 @@ final class Alpaca_Takeover {
 
 		$blocked_screen_ids = array(
 			'dashboard',
+			'project-board_page_alpaca-fix-with-ai',
 			'tools',
 			'import',
 			'upload',

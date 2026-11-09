@@ -17,5 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/includes/class-alpaca-takeover.php';
+require_once __DIR__ . '/includes/class-alpaca-takeover-appearance.php';
 
 Alpaca_Takeover::boot();
+Alpaca_Takeover_Appearance::boot();

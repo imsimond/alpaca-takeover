@@ -1,0 +1,79 @@
+body.wp-admin.alpaca-theme-camelid {
+  --alpaca-font: "Bricolage Grotesque", georgia, serif;
+  --alpaca-font-size-body: 14px;
+  --alpaca-font-size-small: 12px;
+  --alpaca-font-size-label: 11px;
+  --alpaca-font-size-nav: 14px;
+  --alpaca-font-size-heading: 20px;
+  --alpaca-font-size-title: 25px;
+  --alpaca-space-unit: 4px;
+  --alpaca-border-width: 2px;
+  --alpaca-radius-sm: 2px;
+  --alpaca-radius-control: 3px;
+  --alpaca-radius-md: 4px;
+  --alpaca-radius-lg: 6px;
+  --alpaca-radius-xl: 8px;
+  --alpaca-shadow-x: 0px;
+  --alpaca-shadow-y: 3px;
+  --alpaca-shadow-blur: 0px;
+  --alpaca-popover-shadow-y: 12px;
+  --alpaca-popover-shadow-blur: 24px;
+  --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
+    var(--alpaca-shadow-blur)
+    color-mix(
+      in srgb,
+      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
+      transparent
+    );
+  --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
+    var(--alpaca-shadow-blur)
+    color-mix(
+      in srgb,
+      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
+      transparent
+    );
+  --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
+    var(--alpaca-popover-shadow-blur)
+    color-mix(
+      in srgb,
+      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
+      transparent
+    );
+}
+
+body.wp-admin.alpaca-theme-camelid.alpaca-mode-light {
+  --alpaca-ink: #29251f;
+  --alpaca-chrome-surface: #29251f;
+  --alpaca-line: #51483c;
+  --alpaca-paper: #f4eddd;
+  --alpaca-surface: #fffaf0;
+  --alpaca-dark-surface: #353027;
+  --alpaca-dark-accent: #544933;
+  --alpaca-text-on-dark: #fff8e9;
+  --alpaca-text-on-accent: #29251f;
+  --alpaca-text-muted: #62594c;
+  --alpaca-border-muted: #b7aa93;
+  --alpaca-accent: #f5d65b;
+  --alpaca-accent-hover: #edb5a2;
+  --alpaca-danger: #a9342c;
+  --alpaca-danger-strong: #852820;
+  --alpaca-danger-surface: #fff0e8;
+  --alpaca-danger-border: #dda398;
+  --alpaca-icon-muted: #c9bdab;
+  --alpaca-shadow-color: #29251f;
+  --alpaca-shadow-opacity: 100%;
+  --alpaca-columnbg: #e9c2a8;
+  --alpaca-color-scheme: light;
+}
+
+body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light
+  #project-board
+  .alpaca-container:nth-child(3n + 2) {
+  --alpaca-columnbg: #c7d8c8;
+}
+
+body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light
+  #project-board
+  .alpaca-container:nth-child(3n) {
+  --alpaca-columnbg: #e6d58d;
+}

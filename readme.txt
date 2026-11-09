@@ -21,6 +21,12 @@ All front-end rendering is blocked. The site's only presence is the admin kanban
 
 But be aware: files served _directly_ by the web server, such as uploaded media, may still be accessible by URL and require separate web-server rules to protect.
 
+== Appearance ==
+
+Choose a site-wide theme from Configure > Appearance. Each theme uses one fixed color mode: Camelid is light and Othello is dark. Themes preserve the Project Board navigation and screen layout while varying fonts, colors, spacing, controls, borders, and shadows.
+
+Plugins can register or enforce themes and provide theme stylesheets. See `docs/theme-development.md` for the theme registration API and CSS variables.
+
 == Installation ==
 
 1. Install and activate Alpaca Issue Tracker.
