@@ -134,7 +134,10 @@
 
           setError(
             requestError.message ||
-              __("The board background color could not be saved.", "alpaca-takeover"),
+              __(
+                "The board background color could not be saved.",
+                "alpaca-takeover",
+              ),
           );
         })
         .finally(() => {

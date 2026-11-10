@@ -27,11 +27,8 @@
   translate: 0 9px;
 }
 
-.alpaca-takeover-hue-control
-  .components-range-control__thumb-wrapper,
-.alpaca-takeover-hue-control
-  .components-range-control__thumb-wrapper
-  > span {
+.alpaca-takeover-hue-control .components-range-control__thumb-wrapper,
+.alpaca-takeover-hue-control .components-range-control__thumb-wrapper > span {
   width: 20px;
   height: 20px;
 }
@@ -40,9 +37,7 @@
   translate: 0 -4px;
 }
 
-.alpaca-takeover-hue-control
-  .components-range-control__thumb-wrapper
-  > span {
+.alpaca-takeover-hue-control .components-range-control__thumb-wrapper > span {
   box-sizing: border-box;
   border: 3px solid #fff;
   border-radius: 50%;
