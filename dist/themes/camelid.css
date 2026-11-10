@@ -7,6 +7,13 @@ body.wp-admin.alpaca-theme-camelid {
   --alpaca-popover-shadow-blur: 24px;
 }
 
+body.wp-admin.alpaca-theme-camelid .wrap .page-title-action:is(:hover, :focus, :active) {
+  min-height: var(--alpaca-control-height);
+  padding: var(--alpaca-control-pad-y) var(--alpaca-control-pad-x);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
 body.wp-admin.alpaca-theme-camelid.alpaca-mode-light {
   --alpaca-ink: #29251f;
   --alpaca-chrome-surface: #29251f;

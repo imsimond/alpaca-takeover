@@ -8,6 +8,13 @@ body.wp-admin.alpaca-theme-material {
   --alpaca-admin-bar-hover: #174ea6;
 }
 
+body.wp-admin.alpaca-theme-material .wrap .page-title-action:is(:hover, :focus, :active) {
+  min-height: var(--alpaca-control-height);
+  padding: var(--alpaca-control-pad-y) var(--alpaca-control-pad-x);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
 body.wp-admin.alpaca-theme-material.alpaca-mode-light {
   --alpaca-ink: #202124;
   --alpaca-chrome-surface: #f8f9fa;
