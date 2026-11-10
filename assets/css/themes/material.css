@@ -1,45 +1,11 @@
 body.wp-admin.alpaca-theme-material {
   --alpaca-font: "Bricolage Grotesque", sans-serif;
-  --alpaca-font-size-body: 14px;
-  --alpaca-font-size-small: 12px;
-  --alpaca-font-size-label: 11px;
-  --alpaca-font-size-nav: 14px;
-  --alpaca-font-size-heading: 20px;
-  --alpaca-font-size-title: 25px;
-  --alpaca-space-unit: 4px;
-  --alpaca-border-width: 1px;
-  --alpaca-radius-sm: 2px;
-  --alpaca-radius-control: 3px;
-  --alpaca-radius-md: 4px;
   --alpaca-radius-lg: 5px;
   --alpaca-radius-xl: 6px;
-  --alpaca-shadow-x: 0px;
   --alpaca-shadow-y: 2px;
   --alpaca-shadow-blur: 8px;
   --alpaca-shadow-opacity: 12%;
-  --alpaca-popover-shadow-y: 8px;
-  --alpaca-popover-shadow-blur: 20px;
-  --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
-    var(--alpaca-popover-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+  --alpaca-admin-bar-hover: #174ea6;
 }
 
 body.wp-admin.alpaca-theme-material.alpaca-mode-light {
@@ -84,47 +50,6 @@ body.wp-admin.alpaca-theme-material #adminmenuwrap {
     var(--alpaca-paper) 0%,
     var(--alpaca-chrome-surface) 100%
   );
-}
-
-body.wp-admin.alpaca-theme-material #wpadminbar {
-  color: var(--alpaca-ink);
-}
-
-body.wp-admin.alpaca-theme-material #wpadminbar .ab-icon,
-body.wp-admin.alpaca-theme-material #wpadminbar .ab-icon::before {
-  color: var(--alpaca-text-muted);
-}
-
-body.wp-admin.alpaca-theme-material
-  #wpadminbar
-  > #wp-toolbar
-  > ul.ab-top-menu
-  > li:is(:hover, :focus-within)
-  > a.ab-item,
-body.wp-admin.alpaca-theme-material
-  #wpadminbar
-  > #wp-toolbar
-  > ul.ab-top-menu
-  > li:is(:hover, :focus-within)
-  > a.ab-item
-  .ab-icon,
-body.wp-admin.alpaca-theme-material
-  #wpadminbar
-  > #wp-toolbar
-  > ul.ab-top-menu
-  > li:is(:hover, :focus-within)
-  > a.ab-item
-  .ab-icon::before {
-  color: #174ea6;
-}
-
-body.wp-admin.alpaca-theme-material
-  #wpadminbar
-  > #wp-toolbar
-  > ul.ab-top-menu
-  > li:is(:hover, :focus-within)
-  > a.ab-item {
-  background-color: var(--alpaca-dark-accent);
 }
 
 body.wp-admin.alpaca-theme-material

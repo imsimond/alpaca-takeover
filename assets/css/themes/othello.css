@@ -6,19 +6,12 @@ body.wp-admin.alpaca-theme-othello {
   --alpaca-font-size-nav: 15px;
   --alpaca-font-size-heading: 17px;
   --alpaca-font-size-title: 23px;
-  --alpaca-space-unit: 4px;
-  --alpaca-border-width: 1px;
   --alpaca-radius-sm: 5px;
   --alpaca-radius-control: 7px;
   --alpaca-radius-md: 9px;
   --alpaca-radius-lg: 11px;
   --alpaca-radius-xl: 12px;
-  --alpaca-shadow-x: 0px;
-  --alpaca-shadow-y: 1px;
-  --alpaca-shadow-blur: 3px;
   --alpaca-shadow-opacity: 30%;
-  --alpaca-popover-shadow-y: 8px;
-  --alpaca-popover-shadow-blur: 20px;
   --alpaca-paper: #36749b;
   --alpaca-paper-text: var(--alpaca-ink);
   --alpaca-paper-surface: var(--alpaca-surface);
@@ -43,27 +36,6 @@ body.wp-admin.alpaca-theme-othello {
   --alpaca-shadow-color: color-mix(in srgb, var(--alpaca-paper) 5%, black);
   --alpaca-columnbg: rgb(0 0 0 / 50%);
   --alpaca-color-scheme: dark;
-  --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
-    var(--alpaca-popover-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
 }
 
 body.wp-admin.alpaca-theme-othello

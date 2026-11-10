@@ -1,44 +1,10 @@
 body.wp-admin.alpaca-theme-camelid {
   --alpaca-font: "Bricolage Grotesque", georgia, serif;
-  --alpaca-font-size-body: 14px;
-  --alpaca-font-size-small: 12px;
-  --alpaca-font-size-label: 11px;
-  --alpaca-font-size-nav: 14px;
-  --alpaca-font-size-heading: 20px;
-  --alpaca-font-size-title: 25px;
-  --alpaca-space-unit: 4px;
   --alpaca-border-width: 2px;
-  --alpaca-radius-sm: 2px;
-  --alpaca-radius-control: 3px;
-  --alpaca-radius-md: 4px;
-  --alpaca-radius-lg: 6px;
-  --alpaca-radius-xl: 8px;
-  --alpaca-shadow-x: 0px;
   --alpaca-shadow-y: 3px;
   --alpaca-shadow-blur: 0px;
   --alpaca-popover-shadow-y: 12px;
   --alpaca-popover-shadow-blur: 24px;
-  --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
-    var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
-  --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
-    var(--alpaca-popover-shadow-blur)
-    color-mix(
-      in srgb,
-      var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
 }
 
 body.wp-admin.alpaca-theme-camelid.alpaca-mode-light {

@@ -1,10 +1,12 @@
 # Theme Development
 
-Alpaca Takeover keeps its administration layout and component geometry fixed. Theme stylesheets control presentation tokens such as color, typography, spacing, borders, and shadows. The selected theme is site-wide, and each theme supplies one fixed color mode. Camelid and Material 3 are light; Othello is dark.
+Alpaca Takeover keeps its overall administration layout and component placement fixed. Themes may vary presentation and component sizing, spacing, and dimensions, but should not reposition components or change the overall layout. The selected theme is site-wide, and each theme supplies one fixed color mode. Camelid and Material 3 are light; Othello is dark.
 
 ## Register a Theme
 
 Use the `alpaca_takeover_themes` PHP filter to register a theme with a label, stylesheet URL, and fixed `mode` (`light` or `dark`). The stylesheet URL is required; built-in themes already provide their own. Token values belong in CSS, with custom properties on `body.wp-admin.alpaca-theme-{id}`.
+
+Themes may opt into built-in shared styles with the optional `shared_styles` array. The current `light-admin-bar` style applies the light toolbar treatment and uses the active theme's color tokens. Shared styles are enqueued after the theme stylesheet.
 
 ```php
 add_filter(
@@ -21,9 +23,9 @@ add_filter(
 );
 ```
 
-Use the `--alpaca-` prefix and replace underscores with hyphens for CSS custom properties: `ink`, `chrome_surface`, `line`, `paper`, `surface`, `dark_surface`, `dark_accent`, `text_on_dark`, `text_on_accent`, `text_muted`, `border_muted`, `accent`, `accent_hover`, `danger`, `danger_strong`, `danger_surface`, `danger_border`, `icon_muted`, and `shadow_color`. Color values should be hexadecimal colors.
+Use the `--alpaca-` prefix and replace underscores with hyphens for CSS custom properties: `ink`, `chrome_surface`, `line`, `paper`, `surface`, `dark_surface`, `dark_accent`, `text_on_dark`, `text_on_accent`, `text_muted`, `border_muted`, `accent`, `accent_hover`, `danger`, `danger_strong`, `danger_surface`, `danger_border`, `icon_muted`, and `shadow_color`. Color values should be hexadecimal colors. Takeover provides shared defaults for common typography, spacing, border, radius, and shadow geometry tokens; themes can override these defaults by setting the same custom properties on their theme body selector. Themes should define their own palette and shadow color and opacity.
 
-Typography and presentation tokens include `font_family`, `font_size_body`, `font_size_small`, `font_size_label`, `font_size_nav`, `font_size_heading`, `font_size_title`, `spacing_unit`, `border_width`, `radius_sm`, `radius_control`, `radius_md`, `radius_lg`, `radius_xl`, `shadow_x`, `shadow_y`, `shadow_blur`, `shadow_opacity`, `popover_shadow_y`, and `popover_shadow_blur`. Size values use `px`, `rem`, or `em`; shadow opacity is a percentage from `0%` to `100%`. Control heights and padding are fixed as part of the component geometry. Font-family values are limited to family names and common separators; plugins that use a custom font should enqueue that font themselves.
+Typography and presentation tokens include `font_family`, `font_size_body`, `font_size_small`, `font_size_label`, `font_size_nav`, `font_size_heading`, `font_size_title`, `space_unit`, `border_width`, `radius_sm`, `radius_control`, `radius_md`, `radius_lg`, `radius_xl`, `shadow_x`, `shadow_y`, `shadow_blur`, `shadow_opacity`, `popover_shadow_y`, and `popover_shadow_blur`. Size values use `px`, `rem`, or `em`; shadow opacity is a percentage from `0%` to `100%`. Themes may vary component sizes, spacing, dimensions, and padding, but should not change component placement or the overall administration layout. Font-family values are limited to family names and common separators; plugins that use a custom font should enqueue that font themselves.
 
 ## Theme Stylesheet
 
@@ -42,4 +44,4 @@ add_filter(
 );
 ```
 
-Theme IDs are sanitized before use. An invalid forced ID does not override the site's selected theme. Theme stylesheets should set presentation custom properties only; do not override layout, positioning, or component dimensions, which are part of Takeover's fixed geometry.
+Theme IDs are sanitized before use. An invalid forced ID does not override the site's selected theme. Theme stylesheets may set presentation custom properties and theme-specific sizing, spacing, and dimensions. Do not override component positioning or the overall layout owned by Takeover.

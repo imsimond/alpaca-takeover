@@ -281,6 +281,20 @@ final class Alpaca_Takeover_Appearance {
 			$theme_stylesheet_version
 		);
 
+		$shared_stylesheets = self::get_shared_stylesheets();
+
+		foreach ( $themes[ $theme_id ]['shared_styles'] as $shared_style ) {
+			$shared_stylesheet_file    = $plugin_directory . '/' . $shared_stylesheets[ $shared_style ];
+			$shared_stylesheet_version = file_exists( $shared_stylesheet_file ) ? (string) filemtime( $shared_stylesheet_file ) : null;
+
+			wp_enqueue_style(
+				'alpaca-takeover-shared-' . $shared_style,
+				plugin_dir_url( $plugin_file ) . $shared_stylesheets[ $shared_style ],
+				array( 'alpaca-takeover-theme-' . $theme_id ),
+				$shared_stylesheet_version
+			);
+		}
+
 		if ( 'material' === $theme_id ) {
 			$theme_script_file    = $plugin_directory . '/assets/js/themes/material.js';
 			$theme_script_version = file_exists( $theme_script_file ) ? (string) filemtime( $theme_script_file ) : null;
@@ -322,6 +336,7 @@ final class Alpaca_Takeover_Appearance {
 	public static function get_themes() {
 		$defaults = self::get_default_themes();
 		$filtered = apply_filters( 'alpaca_takeover_themes', $defaults );
+		$available_shared_styles = self::get_shared_stylesheets();
 
 		if ( ! is_array( $filtered ) ) {
 			$filtered = $defaults;
@@ -338,23 +353,42 @@ final class Alpaca_Takeover_Appearance {
 
 			$label      = sanitize_text_field( (string) $theme['label'] );
 			$stylesheet = esc_url_raw( (string) $theme['stylesheet'] );
+			$shared_styles = array();
+
+			if ( isset( $theme['shared_styles'] ) && is_array( $theme['shared_styles'] ) ) {
+				foreach ( $theme['shared_styles'] as $shared_style ) {
+					if ( ! is_string( $shared_style ) ) {
+						continue;
+					}
+
+					$shared_style = sanitize_key( $shared_style );
+
+					if ( isset( $available_shared_styles[ $shared_style ] ) ) {
+						$shared_styles[] = $shared_style;
+					}
+				}
+			}
 
 			if ( '' === $label || '' === $stylesheet ) {
 				continue;
 			}
 
+			$shared_styles = array_values( array_unique( $shared_styles ) );
+
 			$themes[ $theme_id ] = array(
-				'label'      => $label,
-				'stylesheet' => $stylesheet,
-				'mode'       => isset( $theme['mode'] ) && 'dark' === $theme['mode'] ? 'dark' : 'light',
+				'label'         => $label,
+				'stylesheet'    => $stylesheet,
+				'shared_styles' => $shared_styles,
+				'mode'          => isset( $theme['mode'] ) && 'dark' === $theme['mode'] ? 'dark' : 'light',
 			);
 		}
 
 		if ( ! isset( $themes[ self::DEFAULT_THEME ] ) ) {
 			$themes[ self::DEFAULT_THEME ] = array(
-				'label'      => $defaults[ self::DEFAULT_THEME ]['label'],
-				'stylesheet' => $defaults[ self::DEFAULT_THEME ]['stylesheet'],
-				'mode'       => $defaults[ self::DEFAULT_THEME ]['mode'],
+				'label'         => $defaults[ self::DEFAULT_THEME ]['label'],
+				'stylesheet'    => $defaults[ self::DEFAULT_THEME ]['stylesheet'],
+				'shared_styles' => array(),
+				'mode'          => $defaults[ self::DEFAULT_THEME ]['mode'],
 			);
 		}
 
@@ -403,6 +437,17 @@ final class Alpaca_Takeover_Appearance {
 	}
 
 	/**
+	 * Return optional shared theme stylesheets.
+	 *
+	 * @return array<string, string> Shared stylesheet paths keyed by theme metadata ID.
+	 */
+	private static function get_shared_stylesheets() {
+		return array(
+			'light-admin-bar' => 'assets/css/themes/light-admin-bar.css',
+		);
+	}
+
+	/**
 	 * Return the built-in themes and their fixed color modes.
 	 *
 	 * @return array<string, array<string, mixed>> Built-in theme metadata.
@@ -418,14 +463,16 @@ final class Alpaca_Takeover_Appearance {
 				'mode'       => 'light',
 			),
 			'geranium' => array(
-				'label'      => __( 'Geranium', 'alpaca-takeover' ),
-				'stylesheet' => $theme_url . 'geranium.css',
-				'mode'       => 'light',
+				'label'         => __( 'Geranium', 'alpaca-takeover' ),
+				'stylesheet'    => $theme_url . 'geranium.css',
+				'shared_styles' => array( 'light-admin-bar' ),
+				'mode'          => 'light',
 			),
 			'material' => array(
-				'label'      => __( 'Material', 'alpaca-takeover' ),
-				'stylesheet' => $theme_url . 'material.css',
-				'mode'       => 'light',
+				'label'         => __( 'Material', 'alpaca-takeover' ),
+				'stylesheet'    => $theme_url . 'material.css',
+				'shared_styles' => array( 'light-admin-bar' ),
+				'mode'          => 'light',
 			),
 			'othello' => array(
 				'label'      => __( 'Othello', 'alpaca-takeover' ),
