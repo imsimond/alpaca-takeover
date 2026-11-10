@@ -408,9 +408,24 @@
   }
 
   .components-modal__frame.alpaca-details-modal {
+    .alpaca-subissues-block .components-checkbox-control__input {
+      --wp-admin-theme-color: var(--alpaca-accent);
+      --wp-components-color-accent: var(--alpaca-accent);
+
+      &:checked + .components-checkbox-control__checked {
+        color: var(--alpaca-text-on-accent);
+        fill: var(--alpaca-text-on-accent);
+
+        path {
+          fill: var(--alpaca-text-on-accent);
+        }
+      }
+    }
+
     :is(
       .components-modal__header > .components-button.is-compact.has-icon,
       .alpaca-modal-options-button,
+      .alpaca-subissues-add-button,
       .alpaca-comment-form-actions
         .components-form-file-upload
         > .components-button,
@@ -434,6 +449,7 @@
     :is(
         .components-modal__header > .components-button.is-compact.has-icon,
         .alpaca-modal-options-button,
+        .alpaca-subissues-add-button,
         .alpaca-comment-form-actions
           .components-form-file-upload
           > .components-button
