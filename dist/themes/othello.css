@@ -269,6 +269,12 @@ body.wp-admin.alpaca-theme-othello.toplevel_page_project-board .alpaca-filter-co
   background: var(--alpaca-accent);
 }
 
+body.wp-admin.alpaca-theme-othello .alpaca-details-grid__item .alpaca-deadline-control .components-button, body.wp-admin.alpaca-theme-othello .alpaca-details-grid__item .alpaca-deadline-control .components-button:hover, body.wp-admin.alpaca-theme-othello .alpaca-details-grid__item .alpaca-deadline-control .components-button:active, body.wp-admin.alpaca-theme-othello .alpaca-details-grid__item .alpaca-deadline-control .components-button:focus {
+  box-shadow: none;
+  background: none;
+  border: 0;
+}
+
 body.wp-admin.alpaca-theme-othello .alpaca-details-grid__item :is(.components-form-token-field__suggestions, .components-form-token-field__suggestions-list) {
   border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
   border-radius: var(--alpaca-radius-control);

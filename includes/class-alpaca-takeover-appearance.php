@@ -22,6 +22,20 @@ final class Alpaca_Takeover_Appearance {
 	const THEME_OPTION = 'alpaca_takeover_theme';
 
 	/**
+	 * Site-wide Othello board background color option name.
+	 *
+	 * @var string
+	 */
+	const OTHELLO_BOARD_COLOR_OPTION = 'alpaca_takeover_othello_board_color';
+
+	/**
+	 * Default Othello board background color.
+	 *
+	 * @var string
+	 */
+	const DEFAULT_OTHELLO_BOARD_COLOR = '#36749b';
+
+	/**
 	 * Default theme ID.
 	 *
 	 * @var string
@@ -110,6 +124,23 @@ final class Alpaca_Takeover_Appearance {
 			)
 		);
 
+		register_rest_route(
+			'alpaca-takeover/v1',
+			'/appearance/othello-board-color',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'update_othello_board_color' ),
+				'permission_callback' => array( $this, 'can_manage_theme' ),
+				'args'                => array(
+					'color' => array(
+						'required' => true,
+						'type'     => 'string',
+						'sanitize_callback' => 'sanitize_hex_color',
+					),
+				),
+			)
+		);
+
 	}
 
 	/**
@@ -178,6 +209,29 @@ final class Alpaca_Takeover_Appearance {
 		update_option( self::THEME_OPTION, $theme_id );
 
 		return $this->get_appearance();
+	}
+
+	/**
+	 * Save the Othello board background color.
+	 *
+	 * @param WP_REST_Request $request REST request.
+	 * @return WP_REST_Response|WP_Error Updated color or an error.
+	 */
+	public function update_othello_board_color( $request ) {
+		$color = sanitize_hex_color( (string) $request->get_param( 'color' ) );
+
+		if ( null === $color ) {
+			return new WP_Error(
+				'alpaca_takeover_invalid_othello_board_color',
+				esc_html__( 'Choose a valid board background color.', 'alpaca-takeover' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$color = strtolower( $color );
+		update_option( self::OTHELLO_BOARD_COLOR_OPTION, $color );
+
+		return rest_ensure_response( array( 'color' => $color ) );
 	}
 
 	/**
@@ -308,6 +362,35 @@ final class Alpaca_Takeover_Appearance {
 			);
 		}
 
+		if ( 'othello' === $theme_id ) {
+			$theme_script_file    = $plugin_directory . '/assets/js/themes/othello.js';
+			$theme_script_version = file_exists( $theme_script_file ) ? (string) filemtime( $theme_script_file ) : null;
+			$theme_script_dependencies = array( 'wp-api-fetch', 'wp-components', 'wp-element', 'wp-hooks', 'wp-i18n' );
+
+			if ( 'project-board_page_alpaca-settings' === $hook_suffix && ! self::is_theme_forced() ) {
+				$theme_script_dependencies[] = 'alpaca-takeover-appearance';
+			}
+
+			wp_enqueue_script(
+				'alpaca-takeover-theme-othello',
+				plugin_dir_url( $plugin_file ) . 'assets/js/themes/othello.js',
+				$theme_script_dependencies,
+				$theme_script_version,
+				true
+			);
+
+			wp_localize_script(
+				'alpaca-takeover-theme-othello',
+				'alpacaTakeoverOthelloSettings',
+				array(
+					'boardColor'           => self::get_othello_board_color(),
+					'boardColorPath'       => '/alpaca-takeover/v1/appearance/othello-board-color',
+					'appearanceTabName'    => 'alpaca-takeover-appearance',
+					'canManageBoardColor'  => current_user_can( 'manage_options' ) && ! self::is_theme_forced(),
+				)
+			);
+		}
+
 	}
 
 	/**
@@ -434,6 +517,19 @@ final class Alpaca_Takeover_Appearance {
 		$themes = self::get_themes();
 
 		return isset( $themes[ $theme_id ]['mode'] ) ? $themes[ $theme_id ]['mode'] : 'light';
+	}
+
+	/**
+	 * Return the saved Othello board background color.
+	 *
+	 * @return string Hexadecimal color.
+	 */
+	private static function get_othello_board_color() {
+		$color = sanitize_hex_color(
+			(string) get_option( self::OTHELLO_BOARD_COLOR_OPTION, self::DEFAULT_OTHELLO_BOARD_COLOR )
+		);
+
+		return null !== $color ? strtolower( $color ) : self::DEFAULT_OTHELLO_BOARD_COLOR;
 	}
 
 	/**

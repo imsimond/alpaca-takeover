@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const { createElement, useState } = wp.element;
-  const { Notice, SelectControl, Spinner } = wp.components;
+  const { createElement, useRef, useState } = wp.element;
+  const { Notice, RangeControl, SelectControl, Spinner } = wp.components;
   const { __ } = wp.i18n;
   const { addFilter } = wp.hooks;
   const appearance = window.alpacaTakeoverSettings;

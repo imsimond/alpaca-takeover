@@ -354,6 +354,13 @@
   }
 
   .alpaca-details-grid__item {
+    .alpaca-deadline-control .components-button,
+    .alpaca-deadline-control .components-button:hover,
+    .alpaca-deadline-control .components-button:active,
+    .alpaca-deadline-control .components-button:focus {
+      @include borderless-transparent;
+    }
+
     :is(
       .components-form-token-field__suggestions,
       .components-form-token-field__suggestions-list
