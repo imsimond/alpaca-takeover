@@ -456,6 +456,7 @@
 
   &.toplevel_page_project-board {
     #project-board-controls .alpaca-board-control {
+      min-height: 40px;
       border-color: var(--alpaca-border-muted);
       color: var(--alpaca-ink);
       background: var(--alpaca-dark-surface);

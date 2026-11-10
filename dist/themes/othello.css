@@ -377,6 +377,7 @@ body.wp-admin.alpaca-theme-othello .components-modal__frame.alpaca-details-modal
 
 body.wp-admin.alpaca-theme-othello.toplevel_page_project-board #project-board-controls .alpaca-board-control {
   border-color: var(--alpaca-border-muted);
+  min-height: 40px;
   color: var(--alpaca-ink);
   background: var(--alpaca-dark-surface);
 }
