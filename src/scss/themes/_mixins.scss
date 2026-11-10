@@ -94,6 +94,16 @@
 @mixin admin-theme-tokens($theme-id, $tokens, $light-tokens: null) {
   @include admin-theme($theme-id) {
     @include alpaca-tokens($tokens);
+    .components-checkbox-control {
+      --checkbox-input-size: 20px;
+
+      .components-checkbox-control__input[type="checkbox"] {
+        width: var(--checkbox-input-size);
+        height: var(--checkbox-input-size);
+        margin-inline-end: 0;
+      }
+    }
+
     @include page-title-action-interaction-state;
 
     @if $light-tokens != null {

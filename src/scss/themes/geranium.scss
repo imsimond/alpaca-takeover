@@ -55,6 +55,22 @@
 
 @include board-theme("geranium") {
   #project-board {
+    .alpaca-item-inner:has(.alpaca-item-assignees) {
+      .components-card__body {
+        padding-block-end: 40px;
+      }
+
+      .alpaca-item-assignees {
+        position: absolute;
+        inset-block-end: 8px;
+        inset-inline-end: 8px;
+
+        .alpaca-user-name {
+          display: none;
+        }
+      }
+    }
+
     .alpaca-item.is-high-priority .alpaca-item-inner {
       background-color: var(--alpaca-paper);
     }

@@ -8,6 +8,16 @@ body.wp-admin.alpaca-theme-material {
   --alpaca-admin-bar-hover: #174ea6;
 }
 
+body.wp-admin.alpaca-theme-material .components-checkbox-control {
+  --checkbox-input-size: 20px;
+}
+
+body.wp-admin.alpaca-theme-material .components-checkbox-control .components-checkbox-control__input[type="checkbox"] {
+  width: var(--checkbox-input-size);
+  height: var(--checkbox-input-size);
+  margin-inline-end: 0;
+}
+
 body.wp-admin.alpaca-theme-material .wrap .page-title-action:is(:hover, :focus, :active) {
   min-height: var(--alpaca-control-height);
   padding: var(--alpaca-control-pad-y) var(--alpaca-control-pad-x);

@@ -6,6 +6,16 @@ body.wp-admin.alpaca-theme-geranium {
   --alpaca-shadow-opacity: 10%;
 }
 
+body.wp-admin.alpaca-theme-geranium .components-checkbox-control {
+  --checkbox-input-size: 20px;
+}
+
+body.wp-admin.alpaca-theme-geranium .components-checkbox-control .components-checkbox-control__input[type="checkbox"] {
+  width: var(--checkbox-input-size);
+  height: var(--checkbox-input-size);
+  margin-inline-end: 0;
+}
+
 body.wp-admin.alpaca-theme-geranium .wrap .page-title-action:is(:hover, :focus, :active) {
   min-height: var(--alpaca-control-height);
   padding: var(--alpaca-control-pad-y) var(--alpaca-control-pad-x);
@@ -43,6 +53,20 @@ body.toplevel_page_project-board.alpaca-theme-geranium.alpaca-mode-light #projec
 
 body.wp-admin.alpaca-theme-geranium .alpaca-settings .alpaca-settings-list-name-editor.components-button, body.wp-admin.alpaca-theme-geranium .alpaca-takeover-appearance .components-select-control .components-input-control__container {
   border-radius: var(--alpaca-radius-control);
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .components-card__body {
+  padding-block-end: 40px;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees {
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-end: 8px;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees .alpaca-user-name {
+  display: none;
 }
 
 body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item.is-high-priority .alpaca-item-inner {
