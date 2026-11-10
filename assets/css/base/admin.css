@@ -546,6 +546,12 @@ body.toplevel_page_project-board
   text-shadow: none;
 }
 
+.wp-core-ui .button,
+.wp-core-ui .button-secondary,
+.wp-core-ui .button-primary {
+  line-height: 1.2;
+}
+
 .wp-core-ui .button-primary,
 .wp-core-ui .page-title-action {
   color: var(--alpaca-text-on-accent);
@@ -553,13 +559,32 @@ body.toplevel_page_project-board
   background: var(--alpaca-accent);
 }
 
-.wp-core-ui .button:hover,
-.wp-core-ui .button-secondary:hover,
-.wp-core-ui .button-primary:hover,
-.wp-core-ui .page-title-action:hover,
-.wp-core-ui .components-button:hover {
-  color: var(--alpaca-ink);
+.wp-core-ui .button-primary:hover:not(:disabled),
+.wp-core-ui .page-title-action:hover {
+  color: var(--alpaca-text-on-accent);
   border-color: var(--alpaca-line);
+  background: var(--alpaca-accent-hover);
+}
+
+.wp-core-ui .button.delete:hover:not(:disabled) {
+  border-color: var(--alpaca-danger-border);
+  color: var(--alpaca-danger-strong);
+  background: var(--alpaca-danger-surface);
+}
+
+.wp-core-ui
+  .button:not(.button-link):hover:not(:disabled):not(.button-primary):not(
+    .delete
+  ),
+.wp-core-ui .button-secondary:hover:not(:disabled) {
+  border-color: var(--alpaca-accent);
+  color: var(--alpaca-ink);
+  background: var(--alpaca-dark-accent);
+}
+
+.wp-core-ui .components-button:hover {
+  border-color: var(--alpaca-line);
+  color: var(--alpaca-ink);
   background: var(--alpaca-accent-hover);
 }
 
