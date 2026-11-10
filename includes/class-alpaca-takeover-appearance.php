@@ -259,19 +259,19 @@ final class Alpaca_Takeover_Appearance {
 
 		$plugin_directory = dirname( __DIR__ );
 		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
-		$style_file       = $plugin_directory . '/assets/css/themes/themes.css';
+		$style_file       = $plugin_directory . '/dist/themes/themes.css';
 		$style_version    = file_exists( $style_file ) ? (string) filemtime( $style_file ) : '0.1.0';
 		$theme_id         = self::get_selected_theme_id();
 		$themes           = self::get_themes();
 
 		wp_enqueue_style(
 			'alpaca-takeover-themes',
-			plugin_dir_url( $plugin_file ) . 'assets/css/themes/themes.css',
+			plugin_dir_url( $plugin_file ) . 'dist/themes/themes.css',
 			array( 'alpaca-takeover-admin' ),
 			$style_version
 		);
 
-		$theme_stylesheet_file = $plugin_directory . '/assets/css/themes/' . $theme_id . '.css';
+		$theme_stylesheet_file = $plugin_directory . '/dist/themes/' . $theme_id . '.css';
 		$theme_stylesheet_version = file_exists( $theme_stylesheet_file ) ? (string) filemtime( $theme_stylesheet_file ) : null;
 
 		wp_enqueue_style(
@@ -443,7 +443,7 @@ final class Alpaca_Takeover_Appearance {
 	 */
 	private static function get_shared_stylesheets() {
 		return array(
-			'light-admin-bar' => 'assets/css/themes/light-admin-bar.css',
+			'light-admin-bar' => 'dist/themes/light-admin-bar.css',
 		);
 	}
 
@@ -454,7 +454,7 @@ final class Alpaca_Takeover_Appearance {
 	 */
 	private static function get_default_themes() {
 		$plugin_file = dirname( __DIR__ ) . '/alpaca-takeover.php';
-		$theme_url   = plugin_dir_url( $plugin_file ) . 'assets/css/themes/';
+		$theme_url   = plugin_dir_url( $plugin_file ) . 'dist/themes/';
 
 		return array(
 			'camelid' => array(

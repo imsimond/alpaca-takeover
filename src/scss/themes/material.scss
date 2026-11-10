@@ -1,0 +1,233 @@
+@use "mixins" as *;
+
+@include admin-theme-tokens(
+  "material",
+  (
+    font: '"Bricolage Grotesque", sans-serif',
+    radius-lg: 5px,
+    radius-xl: 6px,
+    shadow-y: 2px,
+    shadow-blur: 8px,
+    shadow-opacity: 12%,
+    admin-bar-hover: #174ea6,
+  ),
+  (
+    ink: #202124,
+    chrome-surface: #f8f9fa,
+    line: #dadce0,
+    paper: #ffffff,
+    surface: #f8f9fa,
+    dark-surface: #f1f3f4,
+    dark-accent: #e8eaed,
+    text-on-dark: #3c4043,
+    text-on-accent: #ffffff,
+    text-muted: #5f6368,
+    border-muted: #dadce0,
+    accent: #1a73e8,
+    accent-hover: #1967d2,
+    danger: #d93025,
+    danger-strong: #b3261e,
+    danger-surface: #fce8e6,
+    danger-border: #f5c2c7,
+    icon-muted: #5f6368,
+    shadow-color: #202124,
+    columnbg: #f8f9fa,
+    color-scheme: light,
+  )
+);
+
+@include board-theme("material") {
+  &.alpaca-mode-light
+    #project-board
+    .alpaca-board-canvas.alpaca-focus-on-column-enabled {
+    --alpaca-column-focus-backdrop: color-mix(
+      in srgb,
+      var(--alpaca-paper) 60%,
+      transparent
+    );
+  }
+}
+
+@include admin-theme("material") {
+  #adminmenuwrap {
+    box-sizing: border-box;
+    border-bottom: var(--alpaca-border-width) solid var(--alpaca-border-muted);
+    background: linear-gradient(
+      180deg,
+      var(--alpaca-paper) 0%,
+      var(--alpaca-chrome-surface) 100%
+    );
+  }
+
+  #adminmenu li.wp-has-current-submenu > a.wp-has-current-submenu {
+    color: #174ea6;
+    background: #e8f0fe;
+    box-shadow: none;
+
+    &:is(:hover, :focus) {
+      color: #174ea6;
+      background: #e8f0fe;
+      box-shadow: none;
+    }
+
+    .wp-menu-image::before {
+      color: #174ea6;
+    }
+  }
+}
+
+@include board-theme("material") {
+  #alpaca-add-issue,
+  #alpaca-add-issue:is(:hover, :active, :focus, :focus-visible) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: var(--alpaca-control-height);
+    height: var(--alpaca-control-height);
+    padding: 0 var(--alpaca-control-pad-x);
+    border: var(--alpaca-border-width) solid var(--alpaca-accent);
+    border-radius: 999px;
+    color: var(--alpaca-text-on-accent);
+    background: var(--alpaca-accent);
+    box-shadow: none;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(4px);
+  }
+
+  #alpaca-add-issue:hover:not(:disabled, [aria-disabled="true"]),
+  #alpaca-add-issue:active {
+    border-color: var(--alpaca-accent-hover);
+    color: var(--alpaca-text-on-accent);
+    background: var(--alpaca-accent-hover);
+  }
+
+  #alpaca-add-issue:focus-visible {
+    @include focus-ring(2px);
+  }
+}
+
+@include admin-theme("material") {
+  .components-modal__frame.alpaca-details-modal {
+    .alpaca-issue-tabs {
+      .components-tab-panel__tabs {
+        border-bottom-color: var(--alpaca-border-muted);
+      }
+
+      .components-tab-panel__tabs-item:not(.is-active) {
+        color: var(--alpaca-text-muted);
+        border-color: var(--alpaca-border-muted);
+        background: var(--alpaca-dark-surface);
+
+        &:hover {
+          color: var(--alpaca-ink);
+          border-color: var(--alpaca-border-muted);
+          background: var(--alpaca-dark-accent);
+        }
+      }
+
+      .components-tab-panel__tabs-item.is-active {
+        z-index: 1;
+        color: var(--alpaca-ink);
+        border-color: var(--alpaca-border-muted);
+        border-bottom-color: var(--alpaca-paper);
+        background: var(--alpaca-paper);
+      }
+    }
+  }
+
+  :is(#project-board, .components-modal__frame.alpaca-details-modal) {
+    .alpaca-issue-tabs .components-tab-panel__tabs-item.is-active {
+      border-bottom-color: var(--alpaca-paper);
+    }
+  }
+
+  .components-toggle-group-control-option-base[aria-checked="true"] {
+    color: var(--alpaca-ink);
+    background: var(--alpaca-dark-surface);
+  }
+
+  .alpaca-timestamp {
+    color: var(--alpaca-text-muted);
+  }
+
+  .components-modal__frame.alpaca-details-modal {
+    #alpaca-comments {
+      .alpaca-comments-timeline::before {
+        background-color: var(--alpaca-border-muted);
+      }
+
+      .alpaca-timeline-icon {
+        border-color: var(--alpaca-border-muted);
+      }
+
+      .alpaca-timeline-item:not(.issue-deleted) .alpaca-timeline-icon::before {
+        background-color: var(--alpaca-text-muted);
+      }
+
+      .alpaca-timeline-item.status-changed .alpaca-timeline-icon::before {
+        background-color: var(--alpaca-accent);
+      }
+
+      .alpaca-timeline-item:is([data-source="human"], [data-source="create"])
+        .alpaca-timeline-content {
+        border-color: var(--alpaca-border-muted);
+      }
+    }
+  }
+
+  .alpaca-timeline-item[data-source="audit"] .alpaca-comment-date {
+    color: var(--alpaca-text-muted);
+  }
+
+  .alpaca-item-datapoints .alpaca-item-icon {
+    color: var(--alpaca-text-muted);
+  }
+
+  .components-modal__frame.alpaca-details-modal {
+    border-color: var(--alpaca-border-muted);
+    outline-color: var(--alpaca-text-muted);
+
+    :is(.alpaca-comment-form, .components-form-token-field__input-container) {
+      border-color: var(--alpaca-border-muted);
+    }
+
+    .components-textarea-control__input::placeholder {
+      color: var(--alpaca-text-muted);
+      opacity: 1;
+    }
+  }
+
+  :is(#project-board, .components-modal__frame.alpaca-details-modal) {
+    .components-button {
+      border-color: var(--alpaca-border-muted);
+      @include transition(background-color, border-color, color, box-shadow);
+
+      &:hover:not(
+          .is-primary,
+          .is-destructive,
+          :disabled,
+          [aria-disabled="true"]
+        ) {
+        color: var(--alpaca-ink);
+        border-color: var(--alpaca-border-muted);
+        background: var(--alpaca-dark-accent);
+        box-shadow: none;
+        transform: none;
+      }
+    }
+
+    .alpaca-comment-buttons .components-button.alpaca-rotate-90:hover {
+      transform: rotate(90deg);
+    }
+
+    .components-button.is-primary:hover:not(:disabled, [aria-disabled="true"]) {
+      color: var(--alpaca-text-on-accent);
+      border-color: var(--alpaca-accent-hover);
+      background: var(--alpaca-accent-hover);
+      box-shadow: none;
+      transform: none;
+    }
+  }
+}

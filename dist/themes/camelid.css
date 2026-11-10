@@ -32,14 +32,30 @@ body.wp-admin.alpaca-theme-camelid.alpaca-mode-light {
   --alpaca-color-scheme: light;
 }
 
-body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light
-  #project-board
-  .alpaca-container:nth-child(3n + 2) {
+body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light #project-board .alpaca-container:nth-child(3n+2) {
   --alpaca-columnbg: #c7d8c8;
 }
 
-body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light
-  #project-board
-  .alpaca-container:nth-child(3n) {
+body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light #project-board .alpaca-container:nth-child(3n) {
   --alpaca-columnbg: #e6d58d;
+}
+
+body.wp-admin.alpaca-theme-camelid .alpaca-deadline-popover .components-popover__content {
+  background: var(--alpaca-surface);
+}
+
+body.wp-admin.alpaca-theme-camelid .components-modal__frame.alpaca-details-modal .alpaca-deadline-control button[aria-label="Clear deadline"] {
+  box-shadow: none;
+  color: var(--alpaca-danger);
+  background: none;
+  border: 0;
+}
+
+body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light #project-board-controls .alpaca-board-filter-control.is-active-filter .alpaca-filter-control-trigger {
+  min-height: 0;
+  box-shadow: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }

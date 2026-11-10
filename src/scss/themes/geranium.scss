@@ -1,0 +1,397 @@
+@use "mixins" as *;
+
+@include admin-theme-tokens(
+  "geranium",
+  (
+    font: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    font-size-nav: 13px,
+    font-size-title: 24px,
+    radius-control: 4px,
+    shadow-opacity: 10%,
+  ),
+  (
+    ink: #172b4d,
+    chrome-surface: #ffffff,
+    line: #dfe1e6,
+    paper: #ffffff,
+    surface: #ffffff,
+    dark-surface: #f4f5f7,
+    dark-accent: #ebecf0,
+    text-on-dark: #172b4d,
+    text-on-accent: #ffffff,
+    text-muted: #44546f,
+    border-muted: #dfe1e6,
+    accent: #0c66e4,
+    accent-hover: #0052cc,
+    danger: #c9372c,
+    danger-strong: #ae2e24,
+    danger-surface: #ffebe6,
+    danger-border: #f5c2c7,
+    icon-muted: #626f86,
+    shadow-color: #091e42,
+    columnbg: #f4f5f7,
+    color-scheme: light,
+  )
+);
+
+@include board-theme("geranium") {
+  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n + 2),
+  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n) {
+    --alpaca-columnbg: #f4f5f7;
+  }
+}
+
+@include admin-theme("geranium") {
+  .alpaca-settings .alpaca-settings-list-name-editor.components-button {
+    border-radius: var(--alpaca-radius-control);
+  }
+
+  .alpaca-takeover-appearance
+    .components-select-control
+    .components-input-control__container {
+    border-radius: var(--alpaca-radius-control);
+  }
+}
+
+@include board-theme("geranium") {
+  #project-board {
+    .alpaca-item.is-high-priority .alpaca-item-inner {
+      background-color: var(--alpaca-paper);
+    }
+  }
+
+  #project-board-controls {
+    :is(
+      .alpaca-board-filter-control .alpaca-board-control,
+      .alpaca-inbox-trigger
+    ),
+    input[type="search"] {
+      border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
+      border-radius: var(--alpaca-radius-control);
+      color: var(--alpaca-ink);
+      background-color: var(--alpaca-dark-surface);
+      box-shadow: none;
+    }
+
+    .alpaca-board-search {
+      border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
+      border-radius: var(--alpaca-radius-control);
+      background-color: var(--alpaca-dark-surface);
+      box-shadow: none;
+
+      input[type="search"] {
+        @include borderless-transparent;
+      }
+    }
+  }
+
+  #project-board {
+    .alpaca-container-title {
+      color: var(--alpaca-text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .alpaca-container-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-block: 6px;
+
+      h2 {
+        font-size: 12px;
+        margin: 0;
+        line-height: 1.2;
+      }
+    }
+
+    .alpaca-item-count {
+      display: inline-flex;
+      align-items: center;
+      color: var(--alpaca-text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0;
+    }
+
+    .alpaca-container-controls {
+      margin-inline-start: auto;
+
+      .components-button,
+      .components-button:is(:hover, :active, [aria-expanded="true"]) {
+        @include borderless-transparent;
+        color: var(--alpaca-text-muted);
+      }
+
+      .components-button:focus-visible {
+        @include focus-ring();
+      }
+    }
+
+    .alpaca-item-label.alpaca-label-pill {
+      border-radius: var(--alpaca-radius-sm);
+      text-transform: uppercase;
+    }
+  }
+
+  #alpaca-add-issue {
+    border-radius: var(--alpaca-radius-control);
+    box-shadow: none;
+
+    &:is(:hover, :active) {
+      border-color: var(--alpaca-accent-hover);
+      color: var(--alpaca-text-on-accent);
+      background: var(--alpaca-accent-hover);
+      box-shadow: none;
+    }
+
+    &:focus-visible {
+      @include focus-ring(2px);
+    }
+  }
+
+  #project-board-controls {
+    .alpaca-board-search {
+      box-sizing: border-box;
+      height: var(--alpaca-control-height);
+      min-height: var(--alpaca-control-height);
+      font-weight: 500;
+      @include transition(background-color, border-color, color);
+
+      &:is(:hover, :focus-within) {
+        border-color: var(--alpaca-border-muted);
+        background-color: var(--alpaca-dark-accent);
+      }
+
+      &:focus-within {
+        @include focus-ring();
+      }
+
+      .components-input-control__container {
+        height: 100%;
+        min-height: 0;
+      }
+
+      input[type="search"] {
+        height: 20px;
+        line-height: 20px;
+        min-height: 0;
+
+        &:is(:focus, :focus-visible) {
+          border: 0;
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+
+      .components-input-control__prefix {
+        flex: 0 0 20px;
+        width: 20px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          transform: scale(1.4);
+          transform-origin: center;
+        }
+      }
+
+      .components-input-control-prefix-wrapper {
+        padding-inline-start: 0;
+      }
+    }
+
+    :is(.alpaca-filter-control-trigger, .alpaca-inbox-trigger) {
+      font-weight: 500;
+    }
+
+    :is(
+      .alpaca-board-filter-control .alpaca-board-control,
+      .alpaca-inbox-trigger
+    ) {
+      &:hover {
+        background-color: var(--alpaca-dark-accent);
+      }
+
+      &:focus-visible {
+        @include focus-ring();
+      }
+    }
+  }
+}
+
+@include admin-theme("geranium") {
+  .components-modal__frame.alpaca-details-modal {
+    border-color: var(--alpaca-border-muted);
+
+    .components-modal__header {
+      border-color: var(--alpaca-border-muted);
+    }
+
+    .components-modal__content {
+      padding-block-start: 16px;
+    }
+
+    :is(.alpaca-comment-form, .components-form-token-field__input-container) {
+      border-color: var(--alpaca-border-muted);
+    }
+
+    .alpaca-issue-labels-cell .components-form-token-field__token {
+      border-radius: var(--alpaca-radius-sm);
+      padding-inline-start: 0;
+      text-transform: uppercase;
+
+      .components-form-token-field__token-text {
+        padding-inline-start: 8px;
+      }
+    }
+
+    .alpaca-timeline-item[data-source="human"],
+    .alpaca-timeline-item[data-source="create"] {
+      .alpaca-timeline-content {
+        border-color: var(--alpaca-border-muted);
+      }
+    }
+
+    :is(#alpaca-comments, #alpaca-comments-wrapper) {
+      .alpaca-comments-timeline::before {
+        background-color: var(--alpaca-border-muted);
+      }
+
+      .alpaca-timeline-icon {
+        border-color: var(--alpaca-border-muted);
+      }
+    }
+  }
+
+  :is(
+    .alpaca-settings-tabs,
+    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
+  ) {
+    .components-tab-panel__tabs {
+      border-bottom-color: var(--alpaca-border-muted);
+    }
+
+    .components-tab-panel__tabs-item {
+      border: 0;
+      border-radius: 0;
+      background-color: transparent;
+    }
+
+    .components-tab-panel__tabs-item:not(.is-active) {
+      color: var(--alpaca-text-muted);
+      background: transparent;
+    }
+
+    .components-tab-panel__tabs-item.is-active {
+      border: 0;
+      color: var(--alpaca-accent);
+      background-color: transparent;
+      box-shadow: inset 0 -3px 0 var(--alpaca-accent);
+
+      &:hover {
+        border: 0;
+        color: var(--alpaca-accent-hover);
+        background-color: transparent;
+        box-shadow: inset 0 -3px 0 var(--alpaca-accent-hover);
+      }
+    }
+  }
+
+  .components-modal__frame.alpaca-details-modal {
+    :is(
+      .components-textarea-control__input,
+      .alpaca-subissues-text-control textarea
+    ) {
+      border-color: var(--alpaca-border-muted);
+    }
+
+    :is(
+      .components-textarea-control__input,
+      .components-form-token-field__input-container
+    ):is(:focus, :focus-within) {
+      border-color: var(--alpaca-accent);
+      box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--alpaca-accent) 24%, transparent);
+      outline: 0;
+    }
+
+    .components-button {
+      border-color: var(--alpaca-border-muted);
+      border-radius: var(--alpaca-radius-control);
+      @include transition(background-color, border-color, color);
+
+      &:hover:not(
+          .is-primary,
+          .is-destructive,
+          .is-active,
+          :disabled,
+          [aria-disabled="true"]
+        ) {
+        border-color: var(--alpaca-border-muted);
+        color: var(--alpaca-ink);
+        background: var(--alpaca-dark-accent);
+        box-shadow: none;
+      }
+
+      &.is-primary:hover:not(:disabled, [aria-disabled="true"]) {
+        border-color: var(--alpaca-accent-hover);
+        color: var(--alpaca-text-on-accent);
+        background: var(--alpaca-accent-hover);
+        box-shadow: none;
+      }
+    }
+  }
+
+  :is(
+    .alpaca-settings-tabs,
+    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
+  ) {
+    .components-tab-panel__tabs-item.is-active:focus-visible {
+      @include focus-ring(2px);
+    }
+  }
+
+  .components-modal__frame.alpaca-details-modal {
+    .components-button.is-destructive:hover:not(
+        :disabled,
+        [aria-disabled="true"]
+      ) {
+      border-color: var(--alpaca-danger-border);
+      color: var(--alpaca-danger-strong);
+      background: var(--alpaca-danger-surface);
+      box-shadow: none;
+    }
+
+    .alpaca-deadline-control {
+      button[aria-label="Clear deadline"] {
+        @include borderless-transparent;
+        color: var(--alpaca-danger);
+
+        &:hover {
+          border: 0;
+          color: var(--alpaca-danger-strong);
+          background: var(--alpaca-danger-surface);
+          box-shadow: none;
+        }
+      }
+    }
+
+    .alpaca-issue-watch-indicator {
+      border-radius: var(--alpaca-radius-control);
+      color: #8a6500;
+      @include transition(background-color, color);
+
+      &:hover {
+        color: #624800;
+        background: #fff3cd;
+      }
+    }
+
+    :is(.components-button, .alpaca-issue-watch-indicator):focus-visible {
+      @include focus-ring(2px);
+    }
+  }
+}

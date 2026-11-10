@@ -1,0 +1,14 @@
+{
+  "name": "alpaca-takeover",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "parcel build src/scss/themes/[a-z]*.scss --dist-dir dist/themes --no-content-hash --no-optimize --no-source-maps",
+    "watch": "parcel watch src/scss/themes/[a-z]*.scss --dist-dir dist/themes --no-content-hash --no-source-maps"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.4",
+    "parcel": "^2.15.4",
+    "sass": "^1.77.0"
+  }
+}

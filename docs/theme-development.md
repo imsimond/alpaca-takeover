@@ -29,6 +29,26 @@ Typography and presentation tokens include `font_family`, `font_size_body`, `fon
 
 ## Theme Stylesheet
 
+Built-in theme styles are authored in `src/scss/themes/`. Install the development dependencies with `npm install`, then run `npm run build` to compile the stylesheets into `dist/themes/`. The build keeps the stable CSS filenames used by the plugin. Commit both SCSS sources and generated CSS so plugin installations do not need Node.js or a build step. Run `npm run watch` while iterating on themes.
+
+The shared `_mixins.scss` file provides `admin-theme-tokens()` for a base token map and an optional light-mode map, `admin-theme()` and `board-theme()` scopes, and focus-ring and transition helpers. Keep palettes in token maps and component rules in the theme stylesheet:
+
+```scss
+@include admin-theme-tokens(
+  "field-notes",
+  (
+    font-size-nav: 14px,
+    radius-control: 4px,
+  ),
+  (
+    ink: #172b4d,
+    accent: #0c66e4,
+  )
+);
+```
+
+Use the focus and transition helpers for repeated state styling; keep theme-specific values in the token maps.
+
 Board columns use `--alpaca-columnbg`. Set its default on the theme body, then override it for subsequent columns with `nth-child()` selectors, as the built-in light themes do.
 
 ## Force a Theme

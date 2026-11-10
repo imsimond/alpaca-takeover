@@ -19,25 +19,19 @@ body.wp-admin {
   --alpaca-popover-shadow-blur: 20px;
   --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
     var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
     var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
     var(--alpaca-popover-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   color-scheme: var(--alpaca-color-scheme, light);
   accent-color: var(--alpaca-accent);
 }
@@ -50,34 +44,23 @@ body.wp-admin .alpaca-deadline-popover .components-popover__content {
   box-shadow: var(--alpaca-popover-shadow);
 }
 
-body.wp-admin .alpaca-deadline-popover [role="application"],
-body.wp-admin .alpaca-deadline-popover [data-wp-component="Heading"] {
+body.wp-admin .alpaca-deadline-popover [role="application"], body.wp-admin .alpaca-deadline-popover [data-wp-component="Heading"] {
   color: var(--alpaca-ink);
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  [role="application"]
-  [data-wp-component="HStack"]
-  + div
-  > div:not(button) {
+body.wp-admin .alpaca-deadline-popover [role="application"] [data-wp-component="HStack"] + div > div:not(button) {
   color: var(--alpaca-text-muted);
   font-weight: 600;
 }
 
-body.wp-admin .alpaca-deadline-popover .components-button,
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:is(:hover, :active, :focus, [aria-expanded="true"]) {
-  border: 0;
-  color: var(--alpaca-ink);
-  background: transparent;
+body.wp-admin .alpaca-deadline-popover .components-button, body.wp-admin .alpaca-deadline-popover .components-button:is(:hover, :active, :focus, [aria-expanded="true"]) {
   box-shadow: none;
+  color: var(--alpaca-ink);
+  background: none;
+  border: 0;
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:hover:not(:disabled, [aria-disabled="true"]) {
+body.wp-admin .alpaca-deadline-popover .components-button:hover:not(:disabled, [aria-disabled="true"]) {
   color: var(--alpaca-accent);
 }
 
@@ -86,13 +69,7 @@ body.wp-admin .alpaca-deadline-popover .components-button:focus-visible {
   outline-offset: 1px;
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:is(
-    [aria-current="date"],
-    [aria-label*="Today"],
-    [aria-label*="Selected"]
-  ) {
+body.wp-admin .alpaca-deadline-popover .components-button:is([aria-current="date"], [aria-label*="Today"], [aria-label*="Selected"]) {
   color: var(--alpaca-accent);
   font-weight: 700;
 }

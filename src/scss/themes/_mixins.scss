@@ -1,0 +1,52 @@
+@use "sass:list";
+
+@mixin admin-theme($theme-id) {
+  body.wp-admin.alpaca-theme-#{$theme-id} {
+    @content;
+  }
+}
+
+@mixin board-theme($theme-id) {
+  body.toplevel_page_project-board.alpaca-theme-#{$theme-id} {
+    @content;
+  }
+}
+
+@mixin focus-ring($offset: 1px) {
+  outline: 2px solid var(--alpaca-accent);
+  outline-offset: $offset;
+}
+
+@mixin transition($properties...) {
+  $transitions: ();
+
+  @each $property in $properties {
+    $transitions: list.append($transitions, #{$property} 140ms ease, comma);
+  }
+
+  transition: $transitions;
+}
+
+@mixin borderless-transparent {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@mixin alpaca-tokens($tokens) {
+  @each $name, $value in $tokens {
+    --alpaca-#{$name}: #{$value};
+  }
+}
+
+@mixin admin-theme-tokens($theme-id, $tokens, $light-tokens: null) {
+  @include admin-theme($theme-id) {
+    @include alpaca-tokens($tokens);
+
+    @if $light-tokens != null {
+      &.alpaca-mode-light {
+        @include alpaca-tokens($light-tokens);
+      }
+    }
+  }
+}

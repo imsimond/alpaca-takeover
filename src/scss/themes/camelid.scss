@@ -1,0 +1,74 @@
+@use "mixins" as *;
+
+@include admin-theme-tokens(
+  "camelid",
+  (
+    font: '"Bricolage Grotesque", georgia, serif',
+    border-width: 2px,
+    shadow-y: 3px,
+    shadow-blur: 0px,
+    popover-shadow-y: 12px,
+    popover-shadow-blur: 24px,
+  ),
+  (
+    ink: #29251f,
+    chrome-surface: #29251f,
+    line: #51483c,
+    paper: #f4eddd,
+    surface: #fffaf0,
+    dark-surface: #353027,
+    dark-accent: #544933,
+    text-on-dark: #fff8e9,
+    text-on-accent: #29251f,
+    text-muted: #62594c,
+    border-muted: #b7aa93,
+    accent: #f5d65b,
+    accent-hover: #edb5a2,
+    danger: #a9342c,
+    danger-strong: #852820,
+    danger-surface: #fff0e8,
+    danger-border: #dda398,
+    icon-muted: #c9bdab,
+    shadow-color: #29251f,
+    shadow-opacity: 100%,
+    columnbg: #e9c2a8,
+    color-scheme: light,
+  )
+);
+
+@include board-theme("camelid") {
+  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n + 2) {
+    --alpaca-columnbg: #c7d8c8;
+  }
+
+  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n) {
+    --alpaca-columnbg: #e6d58d;
+  }
+}
+
+@include admin-theme("camelid") {
+  .alpaca-deadline-popover .components-popover__content {
+    background: var(--alpaca-surface);
+  }
+
+  .components-modal__frame.alpaca-details-modal {
+    .alpaca-deadline-control {
+      button[aria-label="Clear deadline"] {
+        @include borderless-transparent;
+        color: var(--alpaca-danger);
+      }
+    }
+  }
+}
+
+@include board-theme("camelid") {
+  &.alpaca-mode-light #project-board-controls {
+    .alpaca-board-filter-control.is-active-filter
+      .alpaca-filter-control-trigger {
+      min-height: 0;
+      padding: 0;
+      border-radius: 0;
+      @include borderless-transparent;
+    }
+  }
+}

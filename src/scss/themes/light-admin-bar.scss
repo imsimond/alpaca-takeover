@@ -1,0 +1,22 @@
+body.wp-admin {
+  #wpadminbar {
+    color: var(--alpaca-ink);
+
+    .ab-icon,
+    .ab-icon::before {
+      color: var(--alpaca-text-muted);
+    }
+
+    > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within) {
+      > a.ab-item,
+      > a.ab-item .ab-icon,
+      > a.ab-item .ab-icon::before {
+        color: var(--alpaca-admin-bar-hover, var(--alpaca-accent-hover));
+      }
+
+      > a.ab-item {
+        background-color: var(--alpaca-dark-accent);
+      }
+    }
+  }
+}
