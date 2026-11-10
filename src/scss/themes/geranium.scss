@@ -266,39 +266,7 @@
     }
   }
 
-  :is(
-    .alpaca-settings-tabs,
-    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
-  ) {
-    .components-tab-panel__tabs {
-      border-bottom-color: var(--alpaca-border-muted);
-    }
-
-    .components-tab-panel__tabs-item {
-      border: 0;
-      border-radius: 0;
-      background-color: transparent;
-    }
-
-    .components-tab-panel__tabs-item:not(.is-active) {
-      color: var(--alpaca-text-muted);
-      background: transparent;
-    }
-
-    .components-tab-panel__tabs-item.is-active {
-      border: 0;
-      color: var(--alpaca-accent);
-      background-color: transparent;
-      box-shadow: inset 0 -3px 0 var(--alpaca-accent);
-
-      &:hover {
-        border: 0;
-        color: var(--alpaca-accent-hover);
-        background-color: transparent;
-        box-shadow: inset 0 -3px 0 var(--alpaca-accent-hover);
-      }
-    }
-  }
+  @include underlined-tabs;
 
   .components-modal__frame.alpaca-details-modal {
     :is(
@@ -342,15 +310,6 @@
         background: var(--alpaca-accent-hover);
         box-shadow: none;
       }
-    }
-  }
-
-  :is(
-    .alpaca-settings-tabs,
-    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
-  ) {
-    .components-tab-panel__tabs-item.is-active:focus-visible {
-      @include focus-ring(2px);
     }
   }
 

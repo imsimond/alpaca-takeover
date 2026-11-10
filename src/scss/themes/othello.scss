@@ -44,6 +44,49 @@
 );
 
 @include admin-theme("othello") {
+  .wrap a:not(.page-title-action) {
+    color: var(--alpaca-accent);
+  }
+
+  .wrap a:not(.page-title-action):is(:hover, :focus, :active) {
+    color: var(--alpaca-accent-hover);
+  }
+
+  .wrap .page-title-action {
+    border-color: var(--alpaca-accent);
+    color: var(--alpaca-text-on-accent);
+    background: var(--alpaca-accent);
+  }
+
+  .wrap .page-title-action:is(:hover, :focus, :active) {
+    border-color: var(--alpaca-dark-surface);
+    color: var(--alpaca-ink);
+    background: var(--alpaca-dark-surface);
+  }
+
+  .wrap .subsubsub .count {
+    color: var(--alpaca-ink);
+  }
+
+  .wrap .wp-list-table a:not(.page-title-action) {
+    color: var(--alpaca-paper);
+  }
+
+  .wrap .wp-list-table a:not(.page-title-action):is(:hover, :focus, :active) {
+    color: var(--alpaca-dark-surface);
+  }
+
+  #screen-meta-links .show-settings,
+  #screen-meta-links .show-settings:is(:hover, :focus, :active) {
+    color: var(--alpaca-dark-surface);
+  }
+
+  #screen-options-wrap {
+    color: var(--alpaca-dark-surface);
+  }
+
+  @include underlined-tabs;
+
   :is(
     .components-modal__frame.alpaca-details-modal,
     #alpaca-inbox-panel,

@@ -8,6 +8,15 @@ body.wp-admin {
   font-size: var(--alpaca-font-size-body);
 }
 
+body.wp-admin .user-admin-color-wrap {
+  display: none;
+}
+
+body.wp-admin #contextual-help-link-wrap,
+body.wp-admin #contextual-help-wrap {
+  display: none !important;
+}
+
 body.wp-admin .wrap :is(h1, h2, h3, h4),
 body.wp-admin.wp-core-ui .components-input-control__label {
   color: var(--alpaca-ink);
@@ -1112,6 +1121,15 @@ body.wp-admin .components-modal__frame.alpaca-details-modal {
 
 body.wp-admin
   .components-modal__frame.alpaca-details-modal
+  .alpaca-issue-meta
+  .alpaca-user-avatar
+  img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+body.wp-admin
+  .components-modal__frame.alpaca-details-modal
   .alpaca-issue-title {
   color: var(--alpaca-ink);
   font-size: 30px;
@@ -1126,7 +1144,7 @@ body.wp-admin .components-modal__frame.alpaca-details-modal .alpaca-issue-meta {
 body.wp-admin
   .components-modal__frame.alpaca-details-modal
   .alpaca-details-grid {
-  margin-block: 16px 18px;
+  margin-block: 24px 18px;
   padding-block: 16px;
   gap: 16px 24px;
 }
