@@ -7,9 +7,14 @@
   const { __ } = wp.i18n;
   const { addFilter } = wp.hooks;
   const colorPattern = /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i;
+  const luminanceWeights = [0.2126, 0.7152, 0.0722];
+  const luminanceHueCenter = 125;
+  const luminanceHuePeriod = 360;
+  const maxLuminanceAtHueCenter = 0.1;
+  const maxLuminanceAtOppositeHue = 0.16;
 
-  function hexToHsl(color) {
-    const hexadecimal = color.replace("#", "");
+  function hexToRgb(color) {
+    const hexadecimal = color.slice(1);
     const normalizedHex =
       3 === hexadecimal.length
         ? hexadecimal
@@ -17,9 +22,26 @@
             .map((digit) => `${digit}${digit}`)
             .join("")
         : hexadecimal;
-    const red = parseInt(normalizedHex.slice(0, 2), 16) / 255;
-    const green = parseInt(normalizedHex.slice(2, 4), 16) / 255;
-    const blue = parseInt(normalizedHex.slice(4, 6), 16) / 255;
+
+    return [0, 2, 4].map(
+      (offset) => parseInt(normalizedHex.slice(offset, offset + 2), 16) / 255,
+    );
+  }
+
+  function toLinearChannel(channel) {
+    return channel <= 0.04045
+      ? channel / 12.92
+      : ((channel + 0.055) / 1.055) ** 2.4;
+  }
+
+  function fromLinearChannel(channel) {
+    return channel <= 0.0031308
+      ? channel * 12.92
+      : 1.055 * channel ** (1 / 2.4) - 0.055;
+  }
+
+  function hexToHsl(color) {
+    const [red, green, blue] = hexToRgb(color);
     const maximum = Math.max(red, green, blue);
     const minimum = Math.min(red, green, blue);
     const difference = maximum - minimum;
@@ -83,13 +105,51 @@
     return `#${hexadecimalComponents.join("")}`;
   }
 
+  function reduceLuminanceForHue(color, hue) {
+    const hueRadians =
+      (2 * Math.PI * (hue - luminanceHueCenter)) / luminanceHuePeriod;
+    const waveProgress = (1 + Math.cos(hueRadians)) / 2;
+    const maxLuminance =
+      maxLuminanceAtOppositeHue +
+      (maxLuminanceAtHueCenter - maxLuminanceAtOppositeHue) * waveProgress;
+    const rgb = hexToRgb(color);
+    const currentLuminance = rgb.reduce(
+      (total, channel, index) =>
+        total + toLinearChannel(channel) * luminanceWeights[index],
+      0,
+    );
+
+    if (currentLuminance <= maxLuminance) {
+      return color;
+    }
+
+    const luminanceScale = maxLuminance / currentLuminance;
+    const adjustedHex = rgb.map((channel) => {
+      const adjustedChannel = fromLinearChannel(
+        toLinearChannel(channel) * luminanceScale,
+      );
+
+      return Math.round(adjustedChannel * 255)
+        .toString(16)
+        .padStart(2, "0");
+    });
+
+    return `#${adjustedHex.join("")}`;
+  }
+
   function applyBoardColor(color) {
     if (!colorPattern.test(color) || !document.body) {
       return;
     }
 
-    document.body.style.setProperty("--alpaca-paper", color);
-    document.body.style.setProperty("--alpaca-othello-hue-color", color);
+    const hue = hexToHsl(color).hue;
+    const adjustedColor = reduceLuminanceForHue(color, hue);
+
+    document.body.style.setProperty("--alpaca-paper", adjustedColor);
+    document.body.style.setProperty(
+      "--alpaca-othello-hue-color",
+      adjustedColor,
+    );
   }
 
   function BoardHueControl() {

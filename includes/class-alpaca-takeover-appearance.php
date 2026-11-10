@@ -337,12 +337,13 @@ final class Alpaca_Takeover_Appearance {
 
 		if ( 'othello' === $theme_id ) {
 			$board_color = self::get_othello_board_color();
+			$display_color = self::get_othello_display_color( $board_color );
 
 			wp_add_inline_style(
 				'alpaca-takeover-theme-othello',
 				sprintf(
 					'body.wp-admin.alpaca-theme-othello { --alpaca-paper: %1$s; --alpaca-othello-hue-color: %1$s; }',
-					$board_color
+					$display_color
 				)
 			);
 		}
@@ -542,6 +543,84 @@ final class Alpaca_Takeover_Appearance {
 		);
 
 		return null !== $color ? strtolower( $color ) : self::DEFAULT_OTHELLO_BOARD_COLOR;
+	}
+
+	/**
+	 * Return the Othello board color adjusted for its hue on the first paint.
+	 *
+	 * @param string $color Saved hexadecimal board color.
+	 * @return string Display hexadecimal color.
+	 */
+	private static function get_othello_display_color( $color ) {
+		$hexadecimal = substr( $color, 1 );
+
+		if ( 3 === strlen( $hexadecimal ) ) {
+			$hexadecimal = $hexadecimal[0] . $hexadecimal[0] . $hexadecimal[1] . $hexadecimal[1] .
+				$hexadecimal[2] . $hexadecimal[2];
+		}
+
+		$rgb        = array(
+			hexdec( substr( $hexadecimal, 0, 2 ) ) / 255,
+			hexdec( substr( $hexadecimal, 2, 2 ) ) / 255,
+			hexdec( substr( $hexadecimal, 4, 2 ) ) / 255,
+		);
+		$maximum    = max( $rgb );
+		$minimum    = min( $rgb );
+		$difference = $maximum - $minimum;
+		$hue        = 0;
+
+		if ( 0 < $difference ) {
+			if ( $maximum === $rgb[0] ) {
+				$hue = 60 * fmod( ( $rgb[1] - $rgb[2] ) / $difference, 6 );
+			} elseif ( $maximum === $rgb[1] ) {
+				$hue = 60 * ( ( $rgb[2] - $rgb[0] ) / $difference + 2 );
+			} else {
+				$hue = 60 * ( ( $rgb[0] - $rgb[1] ) / $difference + 4 );
+			}
+
+			if ( 0 > $hue ) {
+				$hue += 360;
+			}
+		}
+
+		$hue               = (int) round( $hue ) % 360;
+		$hue_radians       = ( 2 * M_PI * ( $hue - 125 ) ) / 360;
+		$wave_progress     = ( 1 + cos( $hue_radians ) ) / 2;
+		$max_luminance     = 0.16 + ( 0.1 - 0.16 ) * $wave_progress;
+		$weights           = array( 0.2126, 0.7152, 0.0722 );
+		$current_luminance = 0;
+
+		foreach ( $rgb as $index => $channel ) {
+			$linear_channel     = $channel <= 0.04045
+				? $channel / 12.92
+				: pow( ( $channel + 0.055 ) / 1.055, 2.4 );
+			$current_luminance += $linear_channel * $weights[ $index ];
+		}
+
+		if ( $current_luminance <= $max_luminance ) {
+			return $color;
+		}
+
+		$luminance_scale = $max_luminance / $current_luminance;
+		$display_color   = '#';
+
+		foreach ( $rgb as $channel ) {
+			$linear_channel   = $channel <= 0.04045
+				? $channel / 12.92
+				: pow( ( $channel + 0.055 ) / 1.055, 2.4 );
+			$adjusted_channel = $linear_channel * $luminance_scale;
+			$srgb_channel     = $adjusted_channel <= 0.0031308
+				? $adjusted_channel * 12.92
+				: 1.055 * pow( $adjusted_channel, 1 / 2.4 ) - 0.055;
+			$display_color   .= str_pad(
+				dechex( (int) round( $srgb_channel * 255 ) ),
+				2,
+				'0',
+				STR_PAD_LEFT
+			);
+		}
+
+		return $display_color;
 	}
 
 	/**
