@@ -335,6 +335,18 @@ final class Alpaca_Takeover_Appearance {
 			$theme_stylesheet_version
 		);
 
+		if ( 'othello' === $theme_id ) {
+			$board_color = self::get_othello_board_color();
+
+			wp_add_inline_style(
+				'alpaca-takeover-theme-othello',
+				sprintf(
+					'body.wp-admin.alpaca-theme-othello { --alpaca-paper: %1$s; --alpaca-othello-hue-color: %1$s; }',
+					$board_color
+				)
+			);
+		}
+
 		$shared_stylesheets = self::get_shared_stylesheets();
 
 		foreach ( $themes[ $theme_id ]['shared_styles'] as $shared_style ) {

@@ -2052,6 +2052,14 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
     > li.wp-first-item
     > a {
     position: relative;
+    padding-inline-end: 14px;
+  }
+
+  #adminmenu
+    > #toplevel_page_project-board
+    > .wp-submenu
+    > li.wp-first-item:has(.alpaca-admin-menu-badge-mount > .update-plugins)
+    > a {
     padding-inline-end: 40px;
   }
 
