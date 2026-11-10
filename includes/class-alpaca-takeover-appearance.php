@@ -417,6 +417,11 @@ final class Alpaca_Takeover_Appearance {
 				'stylesheet' => $theme_url . 'camelid.css',
 				'mode'       => 'light',
 			),
+			'geranium' => array(
+				'label'      => __( 'Geranium', 'alpaca-takeover' ),
+				'stylesheet' => $theme_url . 'geranium.css',
+				'mode'       => 'light',
+			),
 			'material' => array(
 				'label'      => __( 'Material', 'alpaca-takeover' ),
 				'stylesheet' => $theme_url . 'material.css',
