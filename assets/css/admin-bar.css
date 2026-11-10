@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+#wpadminbar #wp-admin-bar-wp-logo > .ab-sub-wrapper {
+  display: none !important;
+}
+
 #wpadminbar .alpaca-takeover-admin-bar-logo {
   display: block;
   width: 24px;

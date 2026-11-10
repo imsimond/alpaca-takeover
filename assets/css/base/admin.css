@@ -13,6 +13,11 @@ body.wp-admin.wp-core-ui .components-input-control__label {
   color: var(--alpaca-ink);
 }
 
+body.wp-admin .form-table th,
+body.wp-admin .form-wrap label {
+  color: var(--alpaca-ink);
+}
+
 body.wp-admin :is(.description, .components-base-control__help) {
   color: var(--alpaca-text-muted);
 }
