@@ -44,7 +44,8 @@
 }
 
 @include admin-theme("geranium") {
-  @include light-theme($admin-bar: true) {}
+  @include light-theme($admin-bar: true) {
+  }
 
   .button:not(.button-link):not(:disabled):not(.button-primary):not(.delete):is(
       :hover,

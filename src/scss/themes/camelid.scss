@@ -50,8 +50,8 @@
 
 @include admin-theme("camelid") {
   .button:not(.button-link):hover:not(:disabled):not(.button-primary):not(
-    .delete
-  ),
+      .delete
+    ),
   .button-secondary:hover:not(:disabled) {
     border-color: var(--alpaca-line);
     color: var(--alpaca-ink);

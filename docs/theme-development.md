@@ -33,11 +33,11 @@ The shared `_mixins.scss` file provides `admin-theme-tokens()` for a base token 
 
 ```scss
 @include board-theme("field-notes") {
-	@include light-theme {
-		#project-board .alpaca-container:nth-child(3n) {
-			--alpaca-columnbg: var(--alpaca-dark-surface);
-		}
-	}
+  @include light-theme {
+    #project-board .alpaca-container:nth-child(3n) {
+      --alpaca-columnbg: var(--alpaca-dark-surface);
+    }
+  }
 }
 ```
 
