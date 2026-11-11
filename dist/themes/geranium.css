@@ -163,9 +163,6 @@ body.toplevel_page_project-board.alpaca-theme-geranium #alpaca-add-issue:focus-v
 }
 
 body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search {
-  box-sizing: border-box;
-  height: var(--alpaca-control-height);
-  min-height: var(--alpaca-control-height);
   font-weight: 500;
   transition: background-color .14s, border-color .14s, color .14s;
 }
@@ -178,39 +175,6 @@ body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .
 body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search:focus-within {
   outline: 2px solid var(--alpaca-accent);
   outline-offset: 1px;
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search .components-input-control__container {
-  height: 100%;
-  min-height: 0;
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search input[type="search"] {
-  height: 20px;
-  min-height: 0;
-  line-height: 20px;
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search input[type="search"]:is(:focus, :focus-visible) {
-  box-shadow: none;
-  border: 0;
-  outline: 0;
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search .components-input-control__prefix {
-  flex: 0 0 20px;
-  width: 20px;
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search .components-input-control__prefix svg {
-  transform-origin: center;
-  width: 16px;
-  height: 16px;
-  transform: scale(1.4);
-}
-
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls .alpaca-board-search .components-input-control-prefix-wrapper {
-  padding-inline-start: 0;
 }
 
 body.toplevel_page_project-board.alpaca-theme-geranium #project-board-controls :is(.alpaca-filter-control-trigger, .alpaca-inbox-trigger) {

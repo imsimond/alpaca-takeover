@@ -504,6 +504,25 @@ final class Alpaca_Takeover_Appearance {
 			return $forced;
 		}
 
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		if (
+			current_user_can( 'manage_options' ) &&
+			isset( $_GET['theme'] ) &&
+			is_string( $_GET['theme'] ) &&
+			$screen &&
+			(
+				'toplevel_page_project-board' === $screen->id ||
+				0 === strpos( $screen->id, 'project-board_page_' )
+			)
+		) {
+			$requested = sanitize_key( wp_unslash( $_GET['theme'] ) );
+
+			if ( isset( $themes[ $requested ] ) ) {
+				return $requested;
+			}
+		}
+
 		$selected = sanitize_key( (string) get_option( self::THEME_OPTION, self::DEFAULT_THEME ) );
 
 		return isset( $themes[ $selected ] ) ? $selected : self::DEFAULT_THEME;

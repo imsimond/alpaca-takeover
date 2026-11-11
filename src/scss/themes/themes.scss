@@ -43,6 +43,40 @@ body.wp-admin {
   color-scheme: var(--alpaca-color-scheme, light);
   accent-color: var(--alpaca-accent);
 
+  #project-board-controls {
+    .alpaca-board-search.alpaca-board-control {
+      box-sizing: border-box;
+      height: var(--alpaca-control-height);
+
+      .components-input-control__container {
+        height: 100%;
+        min-height: 0;
+      }
+
+      .components-search-control input[type="search"] {
+        height: 20px;
+        min-height: 0;
+        line-height: 20px;
+      }
+
+      .components-input-control__prefix {
+        flex: 0 0 20px;
+        width: 20px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          transform: scale(1.4);
+          transform-origin: center;
+        }
+      }
+
+      .components-input-control-prefix-wrapper {
+        padding-inline-start: 0;
+      }
+    }
+  }
+
   .alpaca-deadline-popover {
     .components-popover__content {
       border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
