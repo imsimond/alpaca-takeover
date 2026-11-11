@@ -473,6 +473,10 @@
       color: var(--alpaca-ink);
       background: var(--alpaca-dark-surface);
 
+      &.alpaca-board-search .components-input-control__input {
+        color: var(--alpaca-ink);
+      }
+
       &:is(:hover, :focus-visible, .is-open) {
         border-color: var(--alpaca-accent);
         color: var(--alpaca-ink);

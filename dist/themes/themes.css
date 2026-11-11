@@ -19,32 +19,24 @@ body.wp-admin {
   --alpaca-popover-shadow-blur: 20px;
   --alpaca-control-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
     var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   --alpaca-shadow: var(--alpaca-shadow-x) var(--alpaca-shadow-y)
     var(--alpaca-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   --alpaca-popover-shadow: 0 var(--alpaca-popover-shadow-y)
     var(--alpaca-popover-shadow-blur)
-    color-mix(
-      in srgb,
+    color-mix(in srgb,
       var(--alpaca-shadow-color) var(--alpaca-shadow-opacity),
-      transparent
-    );
+      transparent);
   color-scheme: var(--alpaca-color-scheme, light);
   accent-color: var(--alpaca-accent);
 }
 
-body.wp-admin.plugin-install-php.alpaca-mode-dark
-  .plugins-popular-tags-wrapper
-  .popular-tags {
+body.wp-admin.plugin-install-php.alpaca-mode-dark .plugins-popular-tags-wrapper .popular-tags {
   color: var(--alpaca-ink);
   box-shadow: none;
   background: none;
@@ -64,17 +56,11 @@ body.wp-admin.plugin-install-php.alpaca-mode-dark .wp-filter .filter-links a {
   border-bottom-color: #0000;
 }
 
-body.wp-admin.plugin-install-php.alpaca-mode-dark
-  .wp-filter
-  .filter-links
-  a.current {
+body.wp-admin.plugin-install-php.alpaca-mode-dark .wp-filter .filter-links a.current {
   border-bottom-color: var(--alpaca-accent);
 }
 
-body.wp-admin.plugin-install-php.alpaca-mode-dark
-  .wp-filter
-  .filter-links
-  a:not(.current):is(:hover, :focus-visible) {
+body.wp-admin.plugin-install-php.alpaca-mode-dark .wp-filter .filter-links a:not(.current):is(:hover, :focus-visible) {
   border-bottom-color: var(--alpaca-accent-hover);
 }
 
@@ -100,74 +86,50 @@ body.wp-admin.plugin-install-php.alpaca-mode-dark #the-list {
   background-color: #0000;
 }
 
-body.wp-admin.plugin-install-php.alpaca-mode-dark
-  #the-list
-  a:not(.page-title-action) {
+body.wp-admin.plugin-install-php.alpaca-mode-dark #the-list a:not(.page-title-action) {
   color: var(--alpaca-accent);
 }
 
-body.wp-admin.plugin-install-php.alpaca-mode-dark
-  #the-list
-  a:not(.page-title-action):is(:hover, :focus, :active) {
+body.wp-admin.plugin-install-php.alpaca-mode-dark #the-list a:not(.page-title-action):is(:hover, :focus, :active) {
   color: var(--alpaca-accent-hover);
 }
 
-body.wp-admin.alpaca-mode-dark.wp-core-ui
-  select:not(.components-select-control__input) {
+body.wp-admin.alpaca-mode-dark.wp-core-ui select:not(.components-select-control__input) {
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E");
   background-position: right 8px center;
   background-repeat: no-repeat;
   background-size: 16px 16px;
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control {
   box-sizing: border-box;
   height: var(--alpaca-control-height);
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control
-  .components-input-control__container {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control .components-input-control__container {
   height: 100%;
   min-height: 0;
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control
-  .components-search-control
-  input[type="search"] {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control .components-search-control input[type="search"] {
   height: 20px;
   min-height: 0;
   line-height: 20px;
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control
-  .components-input-control__prefix {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control .components-input-control__prefix {
   flex: 0 0 20px;
   width: 20px;
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control
-  .components-input-control__prefix
-  svg {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control .components-input-control__prefix svg {
   transform-origin: center;
   width: 16px;
   height: 16px;
   transform: scale(1.4);
 }
 
-body.wp-admin
-  #project-board-controls
-  .alpaca-board-search.alpaca-board-control
-  .components-input-control-prefix-wrapper {
+body.wp-admin #project-board-controls .alpaca-board-search.alpaca-board-control .components-input-control-prefix-wrapper {
   padding-inline-start: 0;
 }
 
@@ -179,34 +141,23 @@ body.wp-admin .alpaca-deadline-popover .components-popover__content {
   box-shadow: var(--alpaca-popover-shadow);
 }
 
-body.wp-admin .alpaca-deadline-popover [role="application"],
-body.wp-admin .alpaca-deadline-popover [data-wp-component="Heading"] {
+body.wp-admin .alpaca-deadline-popover [role="application"], body.wp-admin .alpaca-deadline-popover [data-wp-component="Heading"] {
   color: var(--alpaca-ink);
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  [role="application"]
-  [data-wp-component="HStack"]
-  + div
-  > div:not(button) {
+body.wp-admin .alpaca-deadline-popover [role="application"] [data-wp-component="HStack"] + div > div:not(button) {
   color: var(--alpaca-text-muted);
   font-weight: 600;
 }
 
-body.wp-admin .alpaca-deadline-popover .components-button,
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:is(:hover, :active, :focus, [aria-expanded="true"]) {
+body.wp-admin .alpaca-deadline-popover .components-button, body.wp-admin .alpaca-deadline-popover .components-button:is(:hover, :active, :focus, [aria-expanded="true"]) {
   box-shadow: none;
   color: var(--alpaca-ink);
   background: none;
   border: 0;
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:hover:not(:disabled, [aria-disabled="true"]) {
+body.wp-admin .alpaca-deadline-popover .components-button:hover:not(:disabled, [aria-disabled="true"]) {
   color: var(--alpaca-accent);
 }
 
@@ -215,13 +166,7 @@ body.wp-admin .alpaca-deadline-popover .components-button:focus-visible {
   outline-offset: 1px;
 }
 
-body.wp-admin
-  .alpaca-deadline-popover
-  .components-button:is(
-    [aria-current="date"],
-    [aria-label*="Today"],
-    [aria-label*="Selected"]
-  ) {
+body.wp-admin .alpaca-deadline-popover .components-button:is([aria-current="date"], [aria-label*="Today"], [aria-label*="Selected"]) {
   color: var(--alpaca-accent);
   font-weight: 700;
 }
