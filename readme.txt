@@ -17,6 +17,8 @@ The admin experience is reduced to only the screens and settings needed for the 
 
 Any logged-in site user can view the Project Board. Issue creation and updates retain Alpaca's existing capabilities; issue comments currently share Alpaca's issue-creation permission.
 
+Users who can update issues can upload or remove a featured image from the issue drawer. Uploaded images are saved as WordPress media, shown on board cards, and displayed prominently in the issue details.
+
 All front-end rendering is blocked. The site's only presence is the admin kanban interface.
 
 But be aware: files served _directly_ by the web server, such as uploaded media, may still be accessible by URL and require separate web-server rules to protect.
