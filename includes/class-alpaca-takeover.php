@@ -141,7 +141,7 @@ final class Alpaca_Takeover {
 	}
 
 	/**
-	 * Return a plain-text forbidden response for WordPress frontend requests.
+	 * Redirect WordPress frontend requests to the admin area.
 	 *
 	 * @return void
 	 */
@@ -150,10 +150,7 @@ final class Alpaca_Takeover {
 			return;
 		}
 
-		status_header( 403 );
-		nocache_headers();
-		header( 'Content-Type: text/plain; charset=utf-8' );
-		echo esc_html__( 'This site is available through the Alpaca Project Board.', 'alpaca-takeover' );
+		wp_safe_redirect( admin_url() );
 		exit;
 	}
 

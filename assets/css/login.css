@@ -6,3 +6,7 @@
   background-repeat: no-repeat;
   background-size: 84px;
 }
+
+.login #backtoblog {
+  display: none;
+}
