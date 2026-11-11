@@ -55,6 +55,22 @@ body.toplevel_page_project-board.alpaca-theme-material.alpaca-mode-light #projec
     transparent);
 }
 
+body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar {
+  color: var(--alpaca-ink);
+}
+
+body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar .ab-icon, body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar .ab-icon:before {
+  color: var(--alpaca-text-muted);
+}
+
+body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within, .hover) > a.ab-item, body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within, .hover) > a.ab-item .ab-icon, body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within, .hover) > a.ab-item .ab-icon:before {
+  color: var(--alpaca-admin-bar-hover, var(--alpaca-accent-hover));
+}
+
+body.wp-admin.alpaca-theme-material.alpaca-mode-light #wpadminbar > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within, .hover) > a.ab-item {
+  background-color: var(--alpaca-dark-accent);
+}
+
 body.wp-admin.alpaca-theme-material #adminmenuwrap {
   box-sizing: border-box;
   border-bottom: var(--alpaca-border-width) solid var(--alpaca-border-muted);
@@ -71,7 +87,7 @@ body.wp-admin.alpaca-theme-material #adminmenu li.wp-has-current-submenu > a.wp-
   color: #174ea6;
 }
 
-body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue, body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:is(:hover, :active, :focus, :focus-visible) {
+body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue {
   box-sizing: border-box;
   min-height: var(--alpaca-control-height);
   height: var(--alpaca-control-height);
@@ -83,21 +99,26 @@ body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue, body.t
   border-radius: 999px;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
-  line-height: 1;
+  transition: background-color .14s, border-color .14s, color .14s;
   display: inline-flex;
-  transform: translateY(4px);
 }
 
-body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:hover:not(:disabled, [aria-disabled="true"]), body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:active {
+body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:hover:not(:disabled, [aria-disabled="true"]), body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:active:not(:disabled, [aria-disabled="true"]) {
   border-color: var(--alpaca-accent-hover);
   color: var(--alpaca-text-on-accent);
   background: var(--alpaca-accent-hover);
+  box-shadow: none;
 }
 
 body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue:focus-visible {
   outline: 2px solid var(--alpaca-accent);
   outline-offset: 2px;
+}
+
+body.toplevel_page_project-board.alpaca-theme-material #alpaca-add-issue {
+  font-weight: 700;
+  line-height: 1;
+  transform: translateY(4px);
 }
 
 body.wp-admin.alpaca-theme-material .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs .components-tab-panel__tabs {
@@ -188,14 +209,68 @@ body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame
   transform: none;
 }
 
-body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .alpaca-comment-buttons .components-button.alpaca-rotate-90:hover {
-  transform: rotate(90deg);
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-primary {
+  border: var(--alpaca-border-width) solid var(--alpaca-accent);
+  border-radius: var(--alpaca-radius-control);
+  color: var(--alpaca-text-on-accent);
+  background: var(--alpaca-accent);
+  box-shadow: none;
+  transition: background-color .14s, border-color .14s, color .14s;
 }
 
-body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-primary:hover:not(:disabled, [aria-disabled="true"]) {
-  color: var(--alpaca-text-on-accent);
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-primary:hover:not(:disabled, [aria-disabled="true"]), body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-primary:active:not(:disabled, [aria-disabled="true"]) {
   border-color: var(--alpaca-accent-hover);
+  color: var(--alpaca-text-on-accent);
   background: var(--alpaca-accent-hover);
   box-shadow: none;
-  transform: none;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-primary:focus-visible {
+  outline: 2px solid var(--alpaca-accent);
+  outline-offset: 2px;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-secondary {
+  border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
+  border-radius: var(--alpaca-radius-control);
+  color: var(--alpaca-ink);
+  background: var(--alpaca-dark-surface);
+  box-shadow: none;
+  transition: background-color .14s, border-color .14s, color .14s;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-secondary:hover:not(:disabled, [aria-disabled="true"]), body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-secondary:active:not(:disabled, [aria-disabled="true"]) {
+  border-color: var(--alpaca-border-muted);
+  color: var(--alpaca-ink);
+  background: var(--alpaca-dark-accent);
+  box-shadow: none;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-secondary:focus-visible {
+  outline: 2px solid var(--alpaca-accent);
+  outline-offset: 2px;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-tertiary {
+  border-radius: var(--alpaca-radius-control);
+  color: var(--alpaca-ink);
+  box-shadow: none;
+  background: none;
+  border: 0;
+  transition: color .14s;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-tertiary:hover:not(:disabled, [aria-disabled="true"]), body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-tertiary:active:not(:disabled, [aria-disabled="true"]) {
+  color: var(--alpaca-accent);
+  box-shadow: none;
+  background: none;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .components-button.is-tertiary:focus-visible {
+  outline: 2px solid var(--alpaca-accent);
+  outline-offset: 2px;
+}
+
+body.wp-admin.alpaca-theme-material :is(#project-board, .components-modal__frame.alpaca-details-modal) .alpaca-comment-buttons .components-button.alpaca-rotate-90:hover {
+  transform: rotate(90deg);
 }

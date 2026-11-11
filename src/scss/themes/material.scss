@@ -37,18 +37,20 @@
 );
 
 @include board-theme("material") {
-  &.alpaca-mode-light
-    #project-board
-    .alpaca-board-canvas.alpaca-focus-on-column-enabled {
-    --alpaca-column-focus-backdrop: color-mix(
-      in srgb,
-      var(--alpaca-paper) 60%,
-      transparent
-    );
+  @include light-theme {
+    #project-board .alpaca-board-canvas.alpaca-focus-on-column-enabled {
+      --alpaca-column-focus-backdrop: color-mix(
+        in srgb,
+        var(--alpaca-paper) 60%,
+        transparent
+      );
+    }
   }
 }
 
 @include admin-theme("material") {
+  @include light-theme($admin-bar: true) {}
+
   #adminmenuwrap {
     box-sizing: border-box;
     border-bottom: var(--alpaca-border-width) solid var(--alpaca-border-muted);
@@ -77,8 +79,7 @@
 }
 
 @include board-theme("material") {
-  #alpaca-add-issue,
-  #alpaca-add-issue:is(:hover, :active, :focus, :focus-visible) {
+  #alpaca-add-issue {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -86,25 +87,10 @@
     min-height: var(--alpaca-control-height);
     height: var(--alpaca-control-height);
     padding: 0 var(--alpaca-control-pad-x);
-    border: var(--alpaca-border-width) solid var(--alpaca-accent);
-    border-radius: 999px;
-    color: var(--alpaca-text-on-accent);
-    background: var(--alpaca-accent);
-    box-shadow: none;
+    @include button-primary(999px);
     font-weight: 700;
     line-height: 1;
     transform: translateY(4px);
-  }
-
-  #alpaca-add-issue:hover:not(:disabled, [aria-disabled="true"]),
-  #alpaca-add-issue:active {
-    border-color: var(--alpaca-accent-hover);
-    color: var(--alpaca-text-on-accent);
-    background: var(--alpaca-accent-hover);
-  }
-
-  #alpaca-add-issue:focus-visible {
-    @include focus-ring(2px);
   }
 }
 
@@ -218,16 +204,10 @@
       }
     }
 
+    @include button-variants;
+
     .alpaca-comment-buttons .components-button.alpaca-rotate-90:hover {
       transform: rotate(90deg);
-    }
-
-    .components-button.is-primary:hover:not(:disabled, [aria-disabled="true"]) {
-      color: var(--alpaca-text-on-accent);
-      border-color: var(--alpaca-accent-hover);
-      background: var(--alpaca-accent-hover);
-      box-shadow: none;
-      transform: none;
     }
   }
 }

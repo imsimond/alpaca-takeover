@@ -6,8 +6,6 @@ Alpaca Takeover keeps its overall administration layout and component placement 
 
 Use the `alpaca_takeover_themes` PHP filter to register a theme with a label, stylesheet URL, and fixed `mode` (`light` or `dark`). The stylesheet URL is required; built-in themes already provide their own. Token values belong in CSS, with custom properties on `body.wp-admin.alpaca-theme-{id}`.
 
-Themes may opt into built-in shared styles with the optional `shared_styles` array. The current `light-admin-bar` style applies the light toolbar treatment and uses the active theme's color tokens. Shared styles are enqueued after the theme stylesheet.
-
 ```php
 add_filter(
 	'alpaca_takeover_themes',
@@ -31,7 +29,21 @@ Typography and presentation tokens include `font_family`, `font_size_body`, `fon
 
 Built-in theme styles are authored in `src/scss/themes/`. Install the development dependencies with `npm install`, then run `npm run build` to compile the stylesheets into `dist/themes/`. The build keeps the stable CSS filenames used by the plugin. Commit both SCSS sources and generated CSS so plugin installations do not need Node.js or a build step. Run `npm run watch` while iterating on themes.
 
-The shared `_mixins.scss` file provides `admin-theme-tokens()` for a base token map and an optional light-mode map, `admin-theme()` and `board-theme()` scopes, and focus-ring and transition helpers. Keep palettes in token maps and component rules in the theme stylesheet:
+The shared `_mixins.scss` file provides `admin-theme-tokens()` for a base token map and an optional light-mode map, `admin-theme()` and `board-theme()` scopes, and focus-ring and transition helpers. Use `light-theme` and `dark-theme` inside a theme scope to group mode-specific adjustments. Pass `$admin-bar: true` to `light-theme` to apply the shared admin-bar treatment:
+
+```scss
+@include board-theme("field-notes") {
+	@include light-theme {
+		#project-board .alpaca-container:nth-child(3n) {
+			--alpaca-columnbg: var(--alpaca-dark-surface);
+		}
+	}
+}
+```
+
+Use the button helpers to keep primary, secondary, and tertiary states consistent while using the active theme's tokens. `button-variants()` applies the recipes to Gutenberg's `.is-primary`, `.is-secondary`, and `.is-tertiary` button classes. Include it only in the component scope the theme intends to style. `button-primary()`, `button-secondary()`, and `button-tertiary()` can be included directly for custom controls; each accepts an optional border radius, defaulting to `--alpaca-radius-control`.
+
+Keep palettes in token maps and component rules in the theme stylesheet:
 
 ```scss
 @include admin-theme-tokens(

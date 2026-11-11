@@ -451,14 +451,27 @@ final class Alpaca_Takeover {
 	public function replace_wordpress_logo( $admin_bar ) {
 		$plugin_directory = dirname( __DIR__ );
 		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
-		$logo_url         = plugin_dir_url( $plugin_file ) . 'assets/images/alpaca.svg';
-		$logo_title       = '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr__( 'Alpaca Project Board', 'alpaca-takeover' ) . '" class="alpaca-takeover-admin-bar-logo" />';
+		$custom_logo_id   = (int) get_theme_mod( 'custom_logo' );
+		$logo_url         = $custom_logo_id ? wp_get_attachment_image_url( $custom_logo_id, 'full' ) : false;
+		$site_title       = get_bloginfo( 'name' );
+		$site_tagline     = get_bloginfo( 'description' );
+		$logo_alt         = $logo_url ? $site_title : __( 'Alpaca Project Board', 'alpaca-takeover' );
+
+		if ( ! $logo_url ) {
+			$logo_url = plugin_dir_url( $plugin_file ) . 'assets/images/alpaca.svg';
+		}
+
+		$logo_html  = '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( $logo_alt ) . '" class="alpaca-takeover-admin-bar-logo" />';
+		$title_html = '<span class="alpaca-takeover-admin-bar-identity">'
+			. '<span class="alpaca-takeover-admin-bar-title">' . esc_html( $site_title ) . '</span>'
+			. '<span class="alpaca-takeover-admin-bar-tagline">' . esc_html( $site_tagline ) . '</span>'
+			. '</span>';
 
 		$admin_bar->remove_node( 'wp-logo' );
 		$admin_bar->add_node(
 			array(
 				'id'    => 'wp-logo',
-				'title' => $logo_title,
+				'title' => $logo_html . $title_html,
 				'href'  => admin_url( 'admin.php?page=project-board' ),
 				'meta'  => array(
 					'class' => 'alpaca-takeover-logo-node',
@@ -551,7 +564,7 @@ final class Alpaca_Takeover {
 	 * @return void
 	 */
 	public function remove_admin_bar_content_links( $admin_bar ) {
-		$node_ids = array( 'comments', 'new-content', 'view-site', 'site-name' );
+		$node_ids = array( 'comments', 'new-content', 'view-site', 'site-name', 'command-palette' );
 
 		foreach ( $node_ids as $node_id ) {
 			$admin_bar->remove_node( $node_id );

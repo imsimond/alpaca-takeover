@@ -57,6 +57,17 @@ body.toplevel_page_project-board.alpaca-theme-camelid.alpaca-mode-light #project
   --alpaca-columnbg: #e6d58d;
 }
 
+body.wp-admin.alpaca-theme-camelid .button:not(.button-link):hover:not(:disabled):not(.button-primary):not(.delete), body.wp-admin.alpaca-theme-camelid .button-secondary:hover:not(:disabled) {
+  border-color: var(--alpaca-line);
+  color: var(--alpaca-ink);
+  box-shadow: var(--alpaca-control-shadow);
+  background: #c7d8c8;
+}
+
+body.wp-admin.alpaca-theme-camelid #wpadminbar .alpaca-takeover-admin-bar-tagline {
+  color: var(--alpaca-icon-muted);
+}
+
 body.wp-admin.alpaca-theme-camelid .alpaca-deadline-popover .components-popover__content {
   background: var(--alpaca-surface);
 }

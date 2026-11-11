@@ -13,6 +13,41 @@
   }
 }
 
+@mixin light-theme($admin-bar: false) {
+  &.alpaca-mode-light {
+    @if $admin-bar {
+      #wpadminbar {
+        color: var(--alpaca-ink);
+
+        .ab-icon,
+        .ab-icon::before {
+          color: var(--alpaca-text-muted);
+        }
+
+        > #wp-toolbar > ul.ab-top-menu > li:is(:hover, :focus-within, .hover) {
+          > a.ab-item,
+          > a.ab-item .ab-icon,
+          > a.ab-item .ab-icon::before {
+            color: var(--alpaca-admin-bar-hover, var(--alpaca-accent-hover));
+          }
+
+          > a.ab-item {
+            background-color: var(--alpaca-dark-accent);
+          }
+        }
+      }
+    }
+
+    @content;
+  }
+}
+
+@mixin dark-theme {
+  &.alpaca-mode-dark {
+    @content;
+  }
+}
+
 @mixin focus-ring($offset: 1px) {
   outline: 2px solid var(--alpaca-accent);
   outline-offset: $offset;
@@ -77,6 +112,82 @@
   border: 0;
   background: transparent;
   box-shadow: none;
+}
+
+@mixin button-primary($radius: var(--alpaca-radius-control)) {
+  border: var(--alpaca-border-width) solid var(--alpaca-accent);
+  border-radius: $radius;
+  color: var(--alpaca-text-on-accent);
+  background: var(--alpaca-accent);
+  box-shadow: none;
+  @include transition(background-color, border-color, color);
+
+  &:hover:not(:disabled, [aria-disabled="true"]),
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    border-color: var(--alpaca-accent-hover);
+    color: var(--alpaca-text-on-accent);
+    background: var(--alpaca-accent-hover);
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring(2px);
+  }
+}
+
+@mixin button-secondary($radius: var(--alpaca-radius-control)) {
+  border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
+  border-radius: $radius;
+  color: var(--alpaca-ink);
+  background: var(--alpaca-dark-surface);
+  box-shadow: none;
+  @include transition(background-color, border-color, color);
+
+  &:hover:not(:disabled, [aria-disabled="true"]),
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    border-color: var(--alpaca-border-muted);
+    color: var(--alpaca-ink);
+    background: var(--alpaca-dark-accent);
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring(2px);
+  }
+}
+
+@mixin button-tertiary($radius: var(--alpaca-radius-control)) {
+  border: 0;
+  border-radius: $radius;
+  color: var(--alpaca-ink);
+  background: transparent;
+  box-shadow: none;
+  @include transition(color);
+
+  &:hover:not(:disabled, [aria-disabled="true"]),
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    color: var(--alpaca-accent);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring(2px);
+  }
+}
+
+@mixin button-variants($radius: var(--alpaca-radius-control)) {
+  .components-button.is-primary {
+    @include button-primary($radius);
+  }
+
+  .components-button.is-secondary {
+    @include button-secondary($radius);
+  }
+
+  .components-button.is-tertiary {
+    @include button-tertiary($radius);
+  }
 }
 
 @mixin alpaca-tokens($tokens) {

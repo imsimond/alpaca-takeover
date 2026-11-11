@@ -338,25 +338,27 @@
 }
 
 @include board-theme("othello") {
-  #project-board {
-    .alpaca-container-body,
-    .alpaca-items {
-      padding-inline: 4px;
-    }
-
-    .alpaca-container-header {
-      padding: 8px 16px 6px;
-    }
-
-    .alpaca-item {
-      margin-block-end: 6px;
-
-      .alpaca-item-inner .components-card__body {
-        padding: 14px 16px;
+  @include dark-theme {
+    #project-board {
+      .alpaca-container-body,
+      .alpaca-items {
+        padding-inline: 4px;
       }
 
-      .alpaca-item-content .components-text {
-        font-size: 17px;
+      .alpaca-container-header {
+        padding: 8px 16px 6px;
+      }
+
+      .alpaca-item {
+        margin-block-end: 6px;
+
+        .alpaca-item-inner .components-card__body {
+          padding: 14px 16px;
+        }
+
+        .alpaca-item-content .components-text {
+          font-size: 17px;
+        }
       }
     }
   }
@@ -395,18 +397,10 @@
     }
   }
 
-  .components-button.is-primary,
-  &.toplevel_page_project-board #alpaca-add-issue {
-    border-color: var(--alpaca-accent);
-    color: var(--alpaca-text-on-accent);
-    background: var(--alpaca-accent);
-  }
+  @include button-variants;
 
-  .components-button.is-primary:hover:not(:disabled),
-  &.toplevel_page_project-board #alpaca-add-issue:hover {
-    border-color: var(--alpaca-accent-hover);
-    color: var(--alpaca-text-on-accent);
-    background: var(--alpaca-accent-hover);
+  &.toplevel_page_project-board #alpaca-add-issue {
+    @include button-primary;
   }
 
   .components-modal__frame.alpaca-details-modal {

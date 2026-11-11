@@ -35,13 +35,26 @@
 );
 
 @include board-theme("geranium") {
-  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n + 2),
-  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n) {
-    --alpaca-columnbg: #f4f5f7;
+  @include light-theme {
+    #project-board .alpaca-container:nth-child(3n + 2),
+    #project-board .alpaca-container:nth-child(3n) {
+      --alpaca-columnbg: #f4f5f7;
+    }
   }
 }
 
 @include admin-theme("geranium") {
+  @include light-theme($admin-bar: true) {}
+
+  .button:not(.button-link):not(:disabled):not(.button-primary):not(.delete):is(
+      :hover,
+      :active,
+      :focus:not(:focus-visible)
+    ) {
+    border-color: var(--alpaca-border-muted);
+    box-shadow: none;
+  }
+
   .alpaca-settings .alpaca-settings-list-name-editor.components-button {
     border-radius: var(--alpaca-radius-control);
   }
@@ -153,19 +166,7 @@
   }
 
   #alpaca-add-issue {
-    border-radius: var(--alpaca-radius-control);
-    box-shadow: none;
-
-    &:is(:hover, :active) {
-      border-color: var(--alpaca-accent-hover);
-      color: var(--alpaca-text-on-accent);
-      background: var(--alpaca-accent-hover);
-      box-shadow: none;
-    }
-
-    &:focus-visible {
-      @include focus-ring(2px);
-    }
+    @include button-primary;
   }
 
   #project-board-controls {
@@ -283,14 +284,9 @@
         background: var(--alpaca-dark-accent);
         box-shadow: none;
       }
-
-      &.is-primary:hover:not(:disabled, [aria-disabled="true"]) {
-        border-color: var(--alpaca-accent-hover);
-        color: var(--alpaca-text-on-accent);
-        background: var(--alpaca-accent-hover);
-        box-shadow: none;
-      }
     }
+
+    @include button-variants;
   }
 
   .components-modal__frame.alpaca-details-modal {

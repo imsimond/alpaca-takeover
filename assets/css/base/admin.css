@@ -32,7 +32,7 @@ body.wp-admin :is(.description, .components-base-control__help) {
 }
 
 body.wp-admin.wp-core-ui .components-select-control__input {
-  border: var(--alpaca-border-width) solid var(--alpaca-ink);
+  border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
   border-radius: var(--alpaca-radius-control);
   color: var(--alpaca-ink);
   background-color: var(--alpaca-surface);
@@ -281,10 +281,6 @@ body.wp-admin
 .wp-admin .dashicons:before,
 #adminmenu div.wp-menu-image:before {
   font-family: dashicons !important;
-}
-
-#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
-  width: 42px;
 }
 
 #adminmenuback,
@@ -739,7 +735,7 @@ body.wp-admin
     select,
     textarea
   ) {
-  border: var(--alpaca-border-width) solid var(--alpaca-ink);
+  border: var(--alpaca-border-width) solid var(--alpaca-border-muted);
   border-radius: var(--alpaca-radius-control);
   color: var(--alpaca-ink);
   background-color: var(--alpaca-surface);
@@ -747,7 +743,7 @@ body.wp-admin
 }
 
 .wp-core-ui :is(input, select, textarea):focus {
-  border-color: var(--alpaca-ink);
+  border-color: var(--alpaca-border-muted);
   box-shadow: 0 0 0 2px var(--alpaca-accent);
   outline: 0;
 }

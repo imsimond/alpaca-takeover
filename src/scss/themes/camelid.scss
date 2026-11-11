@@ -37,16 +37,32 @@
 );
 
 @include board-theme("camelid") {
-  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n + 2) {
-    --alpaca-columnbg: #c7d8c8;
-  }
+  @include light-theme {
+    #project-board .alpaca-container:nth-child(3n + 2) {
+      --alpaca-columnbg: #c7d8c8;
+    }
 
-  &.alpaca-mode-light #project-board .alpaca-container:nth-child(3n) {
-    --alpaca-columnbg: #e6d58d;
+    #project-board .alpaca-container:nth-child(3n) {
+      --alpaca-columnbg: #e6d58d;
+    }
   }
 }
 
 @include admin-theme("camelid") {
+  .button:not(.button-link):hover:not(:disabled):not(.button-primary):not(
+    .delete
+  ),
+  .button-secondary:hover:not(:disabled) {
+    border-color: var(--alpaca-line);
+    color: var(--alpaca-ink);
+    background: #c7d8c8;
+    box-shadow: var(--alpaca-control-shadow);
+  }
+
+  #wpadminbar .alpaca-takeover-admin-bar-tagline {
+    color: var(--alpaca-icon-muted);
+  }
+
   .alpaca-deadline-popover .components-popover__content {
     background: var(--alpaca-surface);
   }
@@ -62,13 +78,15 @@
 }
 
 @include board-theme("camelid") {
-  &.alpaca-mode-light #project-board-controls {
-    .alpaca-board-filter-control.is-active-filter
-      .alpaca-filter-control-trigger {
-      min-height: 0;
-      padding: 0;
-      border-radius: 0;
-      @include borderless-transparent;
+  @include light-theme {
+    #project-board-controls {
+      .alpaca-board-filter-control.is-active-filter
+        .alpaca-filter-control-trigger {
+        min-height: 0;
+        padding: 0;
+        border-radius: 0;
+        @include borderless-transparent;
+      }
     }
   }
 }

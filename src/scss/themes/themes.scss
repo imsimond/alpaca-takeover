@@ -43,6 +43,77 @@ body.wp-admin {
   color-scheme: var(--alpaca-color-scheme, light);
   accent-color: var(--alpaca-accent);
 
+  &.plugin-install-php.alpaca-mode-dark {
+    .plugins-popular-tags-wrapper .popular-tags {
+      border: 0;
+      color: var(--alpaca-ink);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .wp-filter {
+      --wp-admin-theme-color: var(--alpaca-accent);
+      --wp-admin-theme-color-darker-10: var(--alpaca-accent-hover);
+
+      border-color: transparent;
+      color: var(--alpaca-ink);
+      background: transparent;
+      box-shadow: none;
+
+      .filter-links a {
+        border-bottom-color: transparent;
+      }
+
+      .filter-links a.current {
+        border-bottom-color: var(--alpaca-accent);
+      }
+
+      .filter-links a:not(.current):is(:hover, :focus-visible) {
+        border-bottom-color: var(--alpaca-accent-hover);
+      }
+    }
+
+    #the-list {
+      --alpaca-paper: #f0f0f1;
+      --alpaca-surface: #fff;
+      --alpaca-dark-surface: #f6f7f7;
+      --alpaca-dark-accent: #f0f0f1;
+      --alpaca-ink: #1d2327;
+      --alpaca-text-on-dark: #1d2327;
+      --alpaca-text-muted: #50575e;
+      --alpaca-line: #c3c4c7;
+      --alpaca-border-muted: #c3c4c7;
+      --alpaca-accent: #2271b1;
+      --alpaca-accent-hover: #135e96;
+      --alpaca-text-on-accent: #fff;
+      --alpaca-color-scheme: light;
+      --alpaca-control-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+      --wp-admin-theme-color: #2271b1;
+      --wp-admin-theme-color-darker-10: #135e96;
+
+      color: var(--alpaca-ink);
+      color-scheme: light;
+      background-color: transparent;
+
+      a:not(.page-title-action) {
+        color: var(--alpaca-accent);
+      }
+
+      a:not(.page-title-action):is(:hover, :focus, :active) {
+        color: var(--alpaca-accent-hover);
+      }
+    }
+  }
+
+  &.alpaca-mode-dark {
+    &.wp-core-ui select:not(.components-select-control__input) {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 16px 16px;
+    }
+  }
+
   #project-board-controls {
     .alpaca-board-search.alpaca-board-control {
       box-sizing: border-box;
