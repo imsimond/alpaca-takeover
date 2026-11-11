@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "parcel build src/scss/themes/[a-z]*.scss --dist-dir dist/themes --no-content-hash --no-optimize --no-source-maps",
-    "watch": "parcel watch src/scss/themes/[a-z]*.scss --dist-dir dist/themes --no-content-hash --no-source-maps"
+    "watch": "parcel watch src/scss/themes/[a-z]*.scss --dist-dir dist/themes --no-content-hash --no-source-maps",
+    "zip": "cd .. && zip -r -FS alpaca-takeover/alpaca-takeover.zip alpaca-takeover/alpaca-takeover.php alpaca-takeover/includes alpaca-takeover/assets alpaca-takeover/dist alpaca-takeover/readme.txt"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.15.4",
