@@ -43,3 +43,23 @@
   color: var(--alpaca-text-muted);
   font-size: 10px;
 }
+
+@media (max-width: 782px) {
+  #wpadminbar {
+    padding-inline: 12px;
+  }
+
+  #wpadminbar #wp-admin-bar-wp-logo > .ab-item {
+    height: 46px;
+  }
+
+  #wpadminbar .alpaca-takeover-admin-bar-identity {
+    align-items: baseline;
+  }
+
+  #wpadminbar .alpaca-takeover-admin-bar-title,
+  #wpadminbar .alpaca-takeover-admin-bar-tagline {
+    line-height: 1.15;
+    text-box: trim-both cap alphabetic;
+  }
+}
