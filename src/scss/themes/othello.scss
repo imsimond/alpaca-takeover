@@ -85,7 +85,9 @@
     color: var(--alpaca-dark-surface);
   }
 
-  @include underlined-tabs;
+  @include underlined-tabs(
+    ".alpaca-notifications-tabs, .alpaca-email-templates-tabs"
+  );
 
   :is(
     .components-modal__frame.alpaca-details-modal,

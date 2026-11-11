@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "sass:selector";
 
 @mixin admin-theme($theme-id) {
   body.wp-admin.alpaca-theme-#{$theme-id} {
@@ -17,11 +18,16 @@
   outline-offset: $offset;
 }
 
-@mixin underlined-tabs {
-  :is(
-    .alpaca-settings-tabs,
-    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
-  ) {
+@mixin underlined-tabs($additional-scopes: "") {
+  $tab-scopes: ".alpaca-settings-tabs, .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs";
+
+  @if $additional-scopes != "" {
+    $tab-scopes: "#{$tab-scopes}, #{$additional-scopes}";
+  }
+
+  $tab-scopes: selector.parse($tab-scopes);
+
+  :is(#{$tab-scopes}) {
     .components-tab-panel__tabs {
       border-bottom-color: var(--alpaca-border-muted);
     }
@@ -50,10 +56,7 @@
     }
   }
 
-  :is(
-    .alpaca-settings-tabs,
-    .components-modal__frame.alpaca-details-modal .alpaca-issue-tabs
-  ) {
+  :is(#{$tab-scopes}) {
     .components-tab-panel__tabs-item.is-active:focus-visible {
       @include focus-ring(2px);
     }
