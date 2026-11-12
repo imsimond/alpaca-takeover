@@ -76,7 +76,7 @@ body.wp-admin .alpaca-takeover-featured-image__dropzone {
   justify-content: space-between;
   gap: 12px;
   padding: 16px;
-  border: 1px dashed var(--alpaca-border-muted);
+  border: 2px dashed var(--alpaca-border-muted);
   border-radius: var(--alpaca-radius-md);
   color: var(--alpaca-ink);
   background: var(--alpaca-surface);
@@ -87,7 +87,7 @@ body.wp-admin .alpaca-takeover-featured-image__dropzone {
 
 body.wp-admin .alpaca-takeover-featured-image__dropzone.is-dragging {
   border-color: var(--alpaca-accent);
-  background: color-mix(in srgb, var(--alpaca-accent) 8%, var(--alpaca-surface));
+  background: color-mix(in srgb, var(--alpaca-accent) 12%, var(--alpaca-surface));
 }
 
 body.wp-admin .alpaca-takeover-featured-image__dropzone p {

@@ -30,8 +30,8 @@
   /**
    * Keep the displayed image consistent across the drawer and board cards.
    *
-   * @param {number} issueId Issue ID.
-   * @param {Object|null} image Featured-image data.
+   * @param {number}      issueId Issue ID.
+   * @param {Object|null} image   Featured-image data.
    */
   const notifyFeaturedImageChanged = (issueId, image) => {
     featuredImages.set(String(issueId), image || null);
@@ -60,9 +60,9 @@
   /**
    * Display a featured image in the media area of a board card.
    *
-   * @param {Object}   props             Component props.
-   * @param {number}   props.issueId     Issue ID.
-   * @param {Object}   props.featuredImage Image data.
+   * @param {Object} props               Component props.
+   * @param {number} props.issueId       Issue ID.
+   * @param {Object} props.featuredImage Image data.
    * @return {Element|null} Featured image or null.
    */
   const BoardFeaturedImage = ({ issueId, featuredImage }) => {
@@ -125,21 +125,94 @@
   /**
    * Render an image upload dropzone in the issue details drawer.
    *
-   * @param {Object} props Props provided by the Alpaca issue filter.
+   * @param {Object}             props                     Props provided by the Alpaca issue filter.
+   * @param {number|undefined}   props.issueId             Issue ID.
+   * @param {Object}             props.meta                Issue metadata.
+   * @param {boolean}            props.isCreating          Whether the issue is being created.
+   * @param {Function|undefined} props.registerAfterCreate Post-create callback registration.
    * @return {Element} Featured-image controls.
    */
-  const FeaturedImageControl = ({ issueId, meta }) => {
+  const FeaturedImageControl = ({
+    issueId,
+    meta,
+    isCreating = false,
+    registerAfterCreate,
+  }) => {
     const initialImage = meta?.featured_image || null;
     const [image, setImage] = useState(initialImage);
     const [isBusy, setIsBusy] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState('');
+    const [pendingUpload, setPendingUpload] = useState(null);
+    const pendingUploadRef = useRef(pendingUpload);
     const fileInput = useRef(null);
+
+    pendingUploadRef.current = pendingUpload;
 
     useEffect(() => {
       setImage(initialImage);
       setError('');
     }, [issueId, initialImage]);
+
+    useEffect(() => {
+      if (!pendingUpload?.previewUrl) {
+        return undefined;
+      }
+
+      const { previewUrl } = pendingUpload;
+
+      return () => window.URL.revokeObjectURL(previewUrl);
+    }, [pendingUpload]);
+
+    useEffect(() => {
+      if (!isCreating || typeof registerAfterCreate !== 'function') {
+        return undefined;
+      }
+
+      return registerAfterCreate(async (createdIssue) => {
+        const upload = pendingUploadRef.current;
+
+        if (!upload) {
+          return;
+        }
+
+        const createdIssueId = Number(createdIssue?.id);
+
+        if (!Number.isInteger(createdIssueId) || createdIssueId <= 0) {
+          throw new Error(__('The featured image could not be saved. Please try again.', 'alpaca-takeover'));
+        }
+
+        setIsBusy(true);
+        setError('');
+
+        try {
+          const formData = new FormData();
+          formData.append('file', upload.file);
+
+          const response = await requestFeaturedImage(createdIssueId, {
+            method: 'POST',
+            body: formData,
+          });
+          const savedImage = response.featured_image || null;
+
+          if (!savedImage?.url) {
+            throw new Error(__('The featured image could not be saved. Please try again.', 'alpaca-takeover'));
+          }
+
+          setImage(savedImage);
+          setPendingUpload(null);
+          notifyFeaturedImageChanged(createdIssueId, savedImage);
+        } catch (requestError) {
+          setError(
+            requestError?.message ||
+              __('The featured image could not be saved. Please try again.', 'alpaca-takeover'),
+          );
+          throw requestError;
+        } finally {
+          setIsBusy(false);
+        }
+      });
+    }, [isCreating, registerAfterCreate]);
 
     const saveImage = async (options) => {
       setIsBusy(true);
@@ -152,8 +225,7 @@
         notifyFeaturedImageChanged(issueId, savedImage);
       } catch (requestError) {
         setError(
-          requestError?.message ||
-            __('The featured image could not be saved. Please try again.', 'alpaca-takeover'),
+          requestError?.message || __('The featured image could not be saved. Please try again.', 'alpaca-takeover'),
         );
       } finally {
         setIsBusy(false);
@@ -167,6 +239,14 @@
 
       if (!file.type || !file.type.startsWith('image/')) {
         setError(__('Choose an image file to use as the featured image.', 'alpaca-takeover'));
+        return;
+      }
+
+      if (isCreating) {
+        const previewUrl = window.URL.createObjectURL(file);
+        setPendingUpload({ file, previewUrl });
+        setImage({ url: previewUrl, alt: '' });
+        setError('');
         return;
       }
 
@@ -201,6 +281,13 @@
     };
 
     const removeImage = () => {
+      if (isCreating) {
+        setPendingUpload(null);
+        setImage(null);
+        setError('');
+        return;
+      }
+
       saveImage({ method: 'DELETE' });
     };
 
@@ -282,7 +369,9 @@
             createElement(
               'p',
               null,
-              __('Drop an image here, or choose a file to upload.', 'alpaca-takeover'),
+              isDragging
+                ? __('Drop to set the featured image for this issue.', 'alpaca-takeover')
+                : __('Drop here to set the issue’s featured image, or choose a file.', 'alpaca-takeover'),
             ),
             createElement(
               Button,
@@ -299,7 +388,7 @@
             'p',
             { className: 'alpaca-takeover-featured-image__status', role: 'status' },
             createElement(Spinner),
-            __('Saving featured image...', 'alpaca-takeover'),
+            __('Saving featured image…', 'alpaca-takeover'),
           )
         : null,
       error
@@ -332,7 +421,7 @@
   );
 
   addFilter(
-    'alpaca.issue.abovetabs',
+    'alpaca.issue.belowmeta',
     'alpaca-takeover/featured-image-control',
     (content, context) =>
       createElement(
@@ -342,6 +431,8 @@
         createElement(FeaturedImageControl, {
           issueId: context?.issueId,
           meta: context?.meta || {},
+          isCreating: Boolean(context?.isCreating),
+          registerAfterCreate: context?.registerAfterCreate,
         }),
       ),
   );

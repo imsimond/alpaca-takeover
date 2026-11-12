@@ -313,6 +313,14 @@ body.wp-admin.alpaca-theme-othello .alpaca-settings-wrap .drag-handle {
   color: var(--alpaca-accent);
 }
 
+body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark .components-modal__frame.alpaca-details-modal .alpaca-comment-dropzone .components-drop-zone {
+  background: var(--alpaca-surface);
+}
+
+body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark .components-modal__frame.alpaca-details-modal .alpaca-comment-dropzone .components-drop-zone:after, body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark .components-modal__frame.alpaca-details-modal .alpaca-comment-dropzone .components-drop-zone__content, body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark .components-modal__frame.alpaca-details-modal .alpaca-comment-dropzone__message {
+  color: var(--alpaca-ink);
+}
+
 body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark #project-board .alpaca-container-body, body.toplevel_page_project-board.alpaca-theme-othello.alpaca-mode-dark #project-board .alpaca-items {
   padding-inline: 4px;
 }

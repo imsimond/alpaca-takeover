@@ -339,6 +339,18 @@
 
 @include board-theme("othello") {
   @include dark-theme {
+    .components-modal__frame.alpaca-details-modal {
+      .alpaca-comment-dropzone .components-drop-zone {
+        background: var(--alpaca-surface);
+      }
+
+      .alpaca-comment-dropzone .components-drop-zone::after,
+      .alpaca-comment-dropzone .components-drop-zone__content,
+      .alpaca-comment-dropzone__message {
+        color: var(--alpaca-ink);
+      }
+    }
+
     #project-board {
       .alpaca-container-body,
       .alpaca-items {
