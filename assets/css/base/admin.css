@@ -263,6 +263,11 @@ body.wp-admin
   font-family: var(--alpaca-font) !important;
 }
 
+body.wp-admin
+  button.components-button.has-icon:not(.has-text):has(> svg:only-child) {
+  aspect-ratio: 1 / 1;
+}
+
 #wpadminbar {
   background: var(--alpaca-chrome-surface);
   border-bottom: 0;
@@ -274,6 +279,15 @@ body.wp-admin
 #wpadminbar > #wp-toolbar span.ab-label {
   color: var(--alpaca-text-on-dark);
   font-family: var(--alpaca-font) !important;
+}
+
+#wpadminbar .ab-icon,
+#wpadminbar .ab-icon::before,
+#wpadminbar .ab-item::before,
+#wpadminbar .ab-item::after,
+#wpadminbar .wp-admin-bar-arrow,
+#wpadminbar .wp-admin-bar-arrow::before {
+  color: inherit !important;
 }
 
 #wpadminbar .ab-icon:before,
