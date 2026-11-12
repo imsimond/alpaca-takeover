@@ -55,6 +55,10 @@ body.wp-admin.alpaca-theme-othello .wrap .page-title-action:is(:hover, :focus, :
   font-weight: 700;
 }
 
+body.wp-admin.alpaca-theme-othello .alpaca-comment-form .alpaca-markdown-textarea__preview {
+  color: var(--alpaca-ink);
+}
+
 body.wp-admin.alpaca-theme-othello .wrap a:not(.page-title-action) {
   color: var(--alpaca-accent);
 }

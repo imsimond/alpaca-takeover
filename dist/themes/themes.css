@@ -94,6 +94,10 @@ body.wp-admin.plugin-install-php.alpaca-mode-dark #the-list a:not(.page-title-ac
   color: var(--alpaca-accent-hover);
 }
 
+body.wp-admin.alpaca-mode-dark .alpaca-comment-form .alpaca-markdown-caret {
+  border-inline-start-color: var(--alpaca-ink);
+}
+
 body.wp-admin.alpaca-mode-dark.wp-core-ui select:not(.components-select-control__input) {
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E");
   background-position: right 8px center;

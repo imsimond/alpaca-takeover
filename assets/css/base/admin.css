@@ -1123,6 +1123,10 @@ body.toplevel_page_project-board #project-board .alpaca-item.empty {
   color: var(--alpaca-text-muted);
 }
 
+body.wp-admin.alpaca-mode-dark #project-board .alpaca-item.empty {
+  border-color: var(--alpaca-dark-surface);
+}
+
 body.toplevel_page_project-board :focus-visible {
   outline: 2px solid var(--alpaca-ink);
   outline-offset: 2px;
@@ -1988,7 +1992,184 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
   white-space: normal;
 }
 
+body.toplevel_page_project-board
+  #adminmenu
+  > li:not(#toplevel_page_project-board):not(#alpaca-utility-menu):not(
+    #collapse-menu
+  ),
+#adminmenu > li.alpaca-utility-menu__source,
+#adminmenu > li.wp-menu-separator {
+  display: none !important;
+}
+
+#adminmenu .alpaca-utility-menu__toggle-label {
+  display: none;
+}
+
 @media (max-width: 782px) {
+  #adminmenu > #alpaca-utility-menu {
+    display: block !important;
+  }
+
+  #adminmenu #alpaca-utility-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 0;
+    color: var(--alpaca-text-on-dark);
+    background: transparent;
+    box-shadow: none;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  #adminmenu #alpaca-utility-toggle:hover,
+  #adminmenu #alpaca-utility-toggle[aria-expanded="true"] {
+    color: var(--alpaca-accent);
+    background: var(--alpaca-dark-accent);
+  }
+
+  #adminmenu #alpaca-utility-toggle:focus-visible {
+    outline: 2px solid var(--alpaca-accent);
+    outline-offset: -2px;
+  }
+
+  #adminmenu #alpaca-utility-toggle svg {
+    display: block;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  #adminmenu .alpaca-utility-menu__toggle-label {
+    display: inline;
+  }
+
+  #adminmenu .alpaca-utility-menu__panel {
+    position: static;
+    display: grid;
+    min-width: 0;
+    max-height: none;
+    gap: 2px;
+    padding: 8px 12px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: var(--alpaca-dark-surface);
+    box-shadow: none;
+  }
+
+  #adminmenu .alpaca-utility-menu__panel[hidden],
+  #adminmenu .alpaca-utility-menu__links[hidden] {
+    display: none !important;
+  }
+
+  #adminmenu .alpaca-utility-menu__group {
+    display: grid;
+    gap: 3px;
+  }
+
+  #adminmenu .alpaca-utility-menu__group + .alpaca-utility-menu__group {
+    margin-top: 8px;
+  }
+
+  #adminmenu .alpaca-utility-menu__heading {
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    margin: 0;
+    padding: 0;
+    color: var(--alpaca-accent);
+    font-size: var(--alpaca-font-size-nav);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 28px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2px 10px;
+    border: 0;
+    border-radius: var(--alpaca-radius-sm);
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+    font: inherit;
+    text-align: start;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle:hover,
+  #adminmenu .alpaca-utility-menu__section-toggle:focus-visible {
+    color: var(--alpaca-accent);
+    background: var(--alpaca-dark-accent);
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle:focus-visible {
+    outline: 2px solid var(--alpaca-accent);
+    outline-offset: -2px;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-indicator {
+    margin-inline-start: auto;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  #adminmenu .alpaca-utility-menu__heading .update-plugins {
+    margin-inline-start: auto;
+    font-size: var(--alpaca-font-size-label);
+  }
+
+  #adminmenu .alpaca-utility-menu__links {
+    display: grid;
+    gap: 1px;
+  }
+
+  #adminmenu .alpaca-utility-menu__link,
+  body.auto-fold #adminmenu .alpaca-utility-menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 36px;
+    padding: 4px 10px;
+    border: 0;
+    border-radius: var(--alpaca-radius-sm);
+    color: var(--alpaca-text-on-dark);
+    font-size: var(--alpaca-font-size-small);
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+
+  #adminmenu .alpaca-utility-menu__link:hover,
+  #adminmenu .alpaca-utility-menu__link:focus:not(:active) {
+    color: var(--alpaca-accent);
+    background: var(--alpaca-dark-accent);
+    box-shadow: none;
+  }
+
+  #adminmenu .alpaca-utility-menu__link[aria-current="page"] {
+    color: var(--alpaca-accent);
+    background: var(--alpaca-dark-accent);
+  }
+
+  #adminmenu .alpaca-utility-menu__link:focus-visible {
+    outline: 2px solid var(--alpaca-accent);
+    outline-offset: -2px;
+  }
+
   body.wp-admin .components-modal__frame.alpaca-details-modal {
     border: 0;
     border-radius: 0;
@@ -1998,10 +2179,6 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
     .components-modal__frame.alpaca-details-modal
     .alpaca-details-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  #adminmenu > #alpaca-utility-menu {
-    display: none !important;
   }
 
   .auto-fold #adminmenuback,
@@ -2183,12 +2360,6 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
     outline-offset: -2px;
   }
 
-  #adminmenu > #menu-plugins,
-  #adminmenu > #menu-users,
-  #adminmenu > #menu-settings {
-    display: none !important;
-  }
-
   #adminmenu > #alpaca-utility-menu {
     position: relative;
     margin-inline-start: auto;
@@ -2235,8 +2406,10 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
     z-index: 100000;
     display: grid;
     min-width: 208px;
+    max-height: calc(100vh - 72px);
     gap: 2px;
     padding: 8px;
+    overflow-y: auto;
     border: 1px solid var(--alpaca-dark-accent);
     border-radius: var(--alpaca-radius-lg);
     background: var(--alpaca-dark-surface);
@@ -2268,11 +2441,48 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
     display: flex;
     align-items: center;
     min-height: 28px;
-    padding: 2px 10px;
+    margin: 0;
+    padding: 0;
     color: var(--alpaca-accent);
     font-size: var(--alpaca-font-size-nav);
     font-weight: 700;
     text-transform: uppercase;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 28px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2px 10px;
+    border: 0;
+    border-radius: var(--alpaca-radius-sm);
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+    font: inherit;
+    text-align: start;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle:hover,
+  #adminmenu .alpaca-utility-menu__section-toggle:focus-visible {
+    color: var(--alpaca-accent);
+    background: var(--alpaca-dark-accent);
+  }
+
+  #adminmenu .alpaca-utility-menu__section-toggle:focus-visible {
+    outline: 2px solid var(--alpaca-accent);
+    outline-offset: -2px;
+  }
+
+  #adminmenu .alpaca-utility-menu__section-indicator {
+    margin-inline-start: auto;
+    font-size: 16px;
+    line-height: 1;
   }
 
   #adminmenu .alpaca-utility-menu__heading .update-plugins {
@@ -2282,19 +2492,31 @@ body.wp-admin #alpaca-activity .alpaca-comment-on-title-text {
 
   #adminmenu .alpaca-utility-menu__links {
     display: grid;
-    gap: 2px;
+    gap: 1px;
+  }
+
+  #adminmenu .alpaca-utility-menu__links[hidden] {
+    display: none !important;
+  }
+
+  #adminmenu
+    .alpaca-utility-menu__group--collapsible
+    .alpaca-utility-menu__links {
+    padding-inline-start: 6px;
   }
 
   #adminmenu .alpaca-utility-menu__link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 36px;
-    padding: 6px 10px;
+    min-height: 30px;
+    padding: 4px 10px;
     border: 0;
     border-radius: var(--alpaca-radius-sm);
     color: var(--alpaca-text-on-dark);
+    font-size: var(--alpaca-font-size-small);
     font-weight: 500;
+    line-height: 1.3;
     text-decoration: none;
   }
 

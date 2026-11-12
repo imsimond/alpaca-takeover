@@ -520,7 +520,7 @@ final class Alpaca_Takeover {
 
 		wp_enqueue_style(
 			'alpaca-takeover-font',
-			'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap',
+			'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=optional',
 			array(),
 			null
 		);

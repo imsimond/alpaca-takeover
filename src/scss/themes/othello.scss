@@ -44,6 +44,10 @@
 );
 
 @include admin-theme("othello") {
+  .alpaca-comment-form .alpaca-markdown-textarea__preview {
+    color: var(--alpaca-ink);
+  }
+
   .wrap a:not(.page-title-action) {
     color: var(--alpaca-accent);
   }
