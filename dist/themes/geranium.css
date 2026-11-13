@@ -76,21 +76,58 @@ body.wp-admin.alpaca-theme-geranium .alpaca-settings .alpaca-settings-list-name-
   border-radius: var(--alpaca-radius-control);
 }
 
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .components-card__body {
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-assignees) .components-card__body, body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-id) .components-card__body {
   padding-block-end: 40px;
 }
 
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees {
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees {
   position: absolute;
   inset-block-end: 8px;
   inset-inline-end: 8px;
 }
 
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees .alpaca-user-name {
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-assignees) .alpaca-item-assignees .alpaca-user-name {
   display: none;
 }
 
-body.toplevel_page_project-board.alpaca-theme-geranium #project-board .alpaca-item.is-high-priority .alpaca-item-inner {
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-id) .alpaca-item-id {
+  color: var(--alpaca-text-muted);
+  white-space: nowrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1;
+  display: inline-flex;
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-start: 8px;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-id) .alpaca-item-id .alpaca-item-id-slug {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-id) .alpaca-item-id .alpaca-item-id-icon-frame {
+  flex: 0 0 26px;
+  justify-content: center;
+  align-items: center;
+  block-size: 26px;
+  inline-size: 26px;
+  display: inline-flex;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item-inner:has(.alpaca-item-id) .alpaca-item-id .alpaca-item-id-icon {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  color: var(--alpaca-text-on-accent);
+  background-color: var(--alpaca-icon-muted);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+body.toplevel_page_project-board.alpaca-theme-geranium :is(#project-board, .alpaca-drag-clone) .alpaca-item.is-high-priority .alpaca-item-inner {
   background-color: var(--alpaca-paper);
 }
 

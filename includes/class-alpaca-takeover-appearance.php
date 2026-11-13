@@ -54,6 +54,7 @@ final class Alpaca_Takeover_Appearance {
 		add_action( 'rest_api_init', array( $appearance, 'register_rest_routes' ) );
 		add_filter( 'admin_body_class', array( $appearance, 'add_body_classes' ) );
 		add_action( 'admin_enqueue_scripts', array( $appearance, 'enqueue_appearance_script' ), 5 );
+		add_action( 'admin_enqueue_scripts', array( $appearance, 'enqueue_geranium_script' ), 5 );
 		add_action( 'admin_enqueue_scripts', array( $appearance, 'enqueue_theme_styles' ), 20 );
 	}
 
@@ -297,6 +298,30 @@ final class Alpaca_Takeover_Appearance {
 				'themes'         => self::get_client_themes(),
 				'canManageTheme' => current_user_can( 'manage_options' ) && ! self::is_theme_forced(),
 			)
+		);
+	}
+
+	/**
+	 * Enqueue Geranium card behavior before Alpaca renders the board.
+	 *
+	 * @return void
+	 */
+	public function enqueue_geranium_script() {
+		if ( is_network_admin() || 'geranium' !== self::get_selected_theme_id() ) {
+			return;
+		}
+
+		$plugin_directory = dirname( __DIR__ );
+		$plugin_file      = $plugin_directory . '/alpaca-takeover.php';
+		$script_file      = $plugin_directory . '/assets/js/themes/geranium.js';
+		$script_version   = file_exists( $script_file ) ? (string) filemtime( $script_file ) : null;
+
+		wp_enqueue_script(
+			'alpaca-takeover-theme-geranium',
+			plugin_dir_url( $plugin_file ) . 'assets/js/themes/geranium.js',
+			array( 'wp-element', 'wp-hooks' ),
+			$script_version,
+			true
 		);
 	}
 

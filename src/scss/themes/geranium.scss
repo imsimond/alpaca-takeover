@@ -68,12 +68,15 @@
 }
 
 @include board-theme("geranium") {
-  #project-board {
-    .alpaca-item-inner:has(.alpaca-item-assignees) {
+  :is(#project-board, .alpaca-drag-clone) {
+    .alpaca-item-inner:has(.alpaca-item-assignees),
+    .alpaca-item-inner:has(.alpaca-item-id) {
       .components-card__body {
         padding-block-end: 40px;
       }
+    }
 
+    .alpaca-item-inner:has(.alpaca-item-assignees) {
       .alpaca-item-assignees {
         position: absolute;
         inset-block-end: 8px;
@@ -81,6 +84,46 @@
 
         .alpaca-user-name {
           display: none;
+        }
+      }
+    }
+
+    .alpaca-item-inner:has(.alpaca-item-id) {
+      .alpaca-item-id {
+        position: absolute;
+        inset-block-end: 8px;
+        inset-inline-start: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin: 0;
+        color: var(--alpaca-text-muted);
+        font-size: 11px;
+        line-height: 1;
+        white-space: nowrap;
+
+        .alpaca-item-id-slug {
+          font-family:
+            ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace !important;
+        }
+
+        .alpaca-item-id-icon-frame {
+          display: inline-flex;
+          flex: 0 0 26px;
+          align-items: center;
+          justify-content: center;
+          inline-size: 26px;
+          block-size: 26px;
+        }
+
+        .alpaca-item-id-icon {
+          width: 20px;
+          height: 20px;
+          box-sizing: border-box;
+          padding: 3px;
+          border-radius: 3px;
+          color: var(--alpaca-text-on-accent);
+          background-color: var(--alpaca-icon-muted);
         }
       }
     }
